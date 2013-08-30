@@ -4,7 +4,7 @@
   <title><![CDATA[Legion of Free Hackers]]></title>
   <link href="http://jmcvetta.github.io/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T13:11:57-07:00</updated>
+  <updated>2013-08-30T13:20:30-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -19,39 +19,6 @@
     <updated>2013-08-30T13:08:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/coming-soon</id>
     <content type="html"><![CDATA[<p>Testing Octopress + Github Pages.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Continuous Integration for Go code]]></title>
-    <link href="http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/"/>
-    <updated>2013-08-30T12:50:00-07:00</updated>
-    <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
-    <content type="html"><![CDATA[<p>Using a <a href="http://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>
-pipeline has become an increasingly standard practice at modern software
-companies.</p>
-
-<p>Let&rsquo;s look at how to set up a CI pipeline for open source software written in
-<a href="http://golang.org">Go</a>.  All the services we will use are free (like beer) for
-for use by Free (like Freedom) Software projects.</p>
-
-<h1>Create a new project on Github</h1>
-
-<h2>Write a function</h2>
-
-<h2>Write a test for it.</h2>
-
-<h1>Set up Travis CI</h1>
-
-<h2>Why Travis rocks</h2>
-
-<h2>Why Travis sucks</h2>
-
-<h1>Set up Drone.io</h1>
-
-<h1>Set up Coveralls</h1>
-
-<h2>Add <code>goveralls</code> to Drone config.</h2>
 ]]></content>
   </entry>
   
