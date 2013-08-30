@@ -283,7 +283,7 @@ To git@github.com:jmcvetta/foofinder.git
 
 In your browser, click on the Travis logo in the upper left corner of the
 screen to return to the Travis home page.  You should now see `foofinder` in
-the "My Repositories" sidebar at the left of the screen.  Clicking on it
+the "My Repositories" sidebar at the left of the screen.  Clicking on it kgg
 
 
 # Set up Drone.io
