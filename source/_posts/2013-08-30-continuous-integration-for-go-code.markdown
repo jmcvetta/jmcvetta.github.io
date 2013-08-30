@@ -19,7 +19,32 @@ when used for Free (like freedom) Software projects.
 # Create a new project on Github
 
 Start by creating a [new repository on Github](https://github.com/new), naming
-it `foofinder`.
+it `foofinder`.  Now clone the repo to your local machine:
+
+``` text
+$ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
+Cloning into 'foofinder'...
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ RSA 2048]----+
+|        .        |
+|       + .       |
+|      . B .      |
+|     o * +       |
+|    X * S        |
+|   + O o . .     |
+|    .   E . o    |
+|       . . o     |
+|        . .      |
++-----------------+
+
+remote: Counting objects: 8, done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 2), reused 4 (delta 1)
+Receiving objects: 100% (8/8), 12.87 KiB, done.
+Resolving deltas: 100% (2/2), done.
+
+$ cd foofinder/
+```
 
 Create a file `foofinder.go` with the following content:
 
@@ -68,14 +93,13 @@ func TestIsItFoo(t *testing.T) {
 
 Now let's run our test and see if it worked:
 
-``` bash
+``` text
 $ go test -v
 === RUN TestIsItFoo
 --- PASS: TestIsItFoo (0.00 seconds)
 PASS
 ok  	github.com/jmcvetta/foofinder	0.009s
 ```
-
 
 ## Test coverage
 
@@ -84,14 +108,15 @@ codebase is covered by tests.
 
 Install `gocov`:
 
-``` bash
+``` text
 $ go get -v github.com/axw/gocov/gocov
 github.com/axw/gocov/gocov
 ```
 
 `gocov` has several commands.   `gocov test` produces JSON output:
 
-``` bash
+
+``` text
 $ gocov test | python -mjson.tool  # Use mjson.tool to pretty print JSON output
 ok  	github.com/jmcvetta/foofinder	0.010s
 {
@@ -171,11 +196,94 @@ ok  	github.com/jmcvetta/foofinder	0.011s
 ```
 
 
+## Commit to Github
+
+Now we will commit our new files to the git repository:
+
+``` text
+$ git add foofinder.go foofinder_test.go
+
+$ git commit -m "trivial program"
+[master a09f2ab] trivial program
+ 2 files changed, 37 insertions(+)
+ create mode 100644 foofinder.go
+ create mode 100644 foofinder_test.go
+```
+
+
 # Set up Travis CI
 
-## Why Travis rocks
+Travis CI is the most popular hosted continuous integration service for open
+source projects.  It is tightly integrated with Github.  However it has some
+limitations for testing Go code - in particular, `gocov` cannot currently be
+used with Travis.
 
-## Why Travis sucks
+Travis reads its configuration from a file in the repository root.  Create a
+`.travis.yml` file with this content:
+
+``` yaml
+language: go
+notificaitons:
+  email:
+    recipients: your.email@host.com
+    on_success: change
+    on_failure: always
+before_script:
+- go get github.com/bmizerany/assert
+```
+
+Add the Travis configuration to Git:
+
+``` text
+$ git add .travis.yml
+
+$ git commit -m "Travis configuration"
+[master 3329dc4] Travis configuration
+ 1 file changed, 8 insertions(+)
+ create mode 100644 .travis.yml
+```
+
+## Activate Travis
+
+Open https://travis-ci.org in your browser.  Click on "Sign in with Github", in
+the upper right corner of the screen.  If you have never logged in to Travis
+before you will be prompted by Github to grant OAuth permissions to Travis.
+
+Once you are logged in, click on your username in the upper right corner, and
+choose "Accounts" from the dropdown.  Travis will display a list of all your
+Github repositories.  Locate `foofinder`, and click the OFF/ON toggle beside
+it.  The toggle will slide to "ON".
+
+Now we push our commits to Github, which will automatically kick off a
+Travis build:
+
+``` text
+$ git push
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ RSA 2048]----+
+|        .        |
+|       + .       |
+|      . B .      |
+|     o * +       |
+|    X * S        |
+|   + O o . .     |
+|    .   E . o    |
+|       . . o     |
+|        . .      |
++-----------------+
+
+Counting objects: 4, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 413 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@github.com:jmcvetta/foofinder.git
+   80f9eb6..3329dc4  master -> master
+```
+
+In your browser, click on the Travis logo in the upper left corner of the
+screen to return to the Travis home page.  You should now see `foofinder` in
+the "My Repositories" sidebar at the left of the screen.  Clicking on it
 
 
 # Set up Drone.io
