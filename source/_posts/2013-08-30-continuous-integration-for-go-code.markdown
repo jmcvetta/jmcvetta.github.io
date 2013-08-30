@@ -18,6 +18,10 @@ for use by Free (like Freedom) Software projects.
 
 # Create a new project on Github
 
+Start by creating a [new repository on Github](https://github.com/new), naming
+it `foofinder`.
+
+
 ## Write a function
 
 ## Write a test for it.
