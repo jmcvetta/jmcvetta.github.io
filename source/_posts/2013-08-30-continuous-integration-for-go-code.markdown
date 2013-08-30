@@ -53,18 +53,17 @@ Create a file `foofinder.go` with the following content:
 ``` go
 package foofinder
 
-import (
-	"github.com/bmizerany/assert"
-	"testing"
-)
+import "errors"
 
-func TestIsItFoo(t *testing.T) {
-	word := "foo"
-	foo, err := IsItFoo(word)
-	if err != nil {
-		t.Fatal(err)
+func IsItFoo(word string) (bool, error) {
+	switch word {
+	case "foo":
+		return true, nil
+	case "bar":
+		err := errors.New("Oh noooooo, it's bar!")
+		return false, err
 	}
-	assert.Equal(t, true, foo)
+	return false, nil
 }
 ```
 
@@ -177,7 +176,8 @@ github.com/jmcvetta/foofinder/foofinder.go	 IsItFoo 40.00% (2/5)
 github.com/jmcvetta/foofinder			 ------- 40.00% (2/5)
 ```
 
-For a more detailed look at your code's coverage, use `gocov annotate`:
+For a more detailed look at your code's coverage, use `gocov annotate`.  Note
+the trailing `-`:
 
 ``` bash
 $ gocov test | gocov annotate -
@@ -211,12 +211,13 @@ $ git commit -m "trivial program"
 ```
 
 
-# Set up Travis CI
+# Travis CI
 
 Travis CI is the most popular hosted continuous integration service for open
-source projects.  It is tightly integrated with Github.  However it has some
-limitations for testing Go code - in particular, `gocov` cannot currently be
-used with Travis.
+source projects.  It is tightly integrated with Github.  Travis results are
+automatically displayed for Pull Requests, helping to ensure you never accept a
+PR that fails its tests.  However it has some limitations for testing Go code
+- in particular, `gocov` cannot currently be used with Travis.
 
 Travis reads its configuration from a file in the repository root.  Create a
 `.travis.yml` file with this content:
@@ -249,10 +250,18 @@ Open https://travis-ci.org in your browser.  Click on "Sign in with Github", in
 the upper right corner of the screen.  If you have never logged in to Travis
 before you will be prompted by Github to grant OAuth permissions to Travis.
 
+{% img images/travis-signin.png Travis Sign-In %}
+
 Once you are logged in, click on your username in the upper right corner, and
-choose "Accounts" from the dropdown.  Travis will display a list of all your
+choose "Accounts" from the dropdown.
+
+{% img images/travis-accounts.png Travis Accounts %}
+
+Travis will display a list of all your
 Github repositories.  Locate `foofinder`, and click the OFF/ON toggle beside
 it.  The toggle will slide to "ON".
+
+{% img images/travis-repos.png Travis Repositories %}
 
 Now we push our commits to Github, which will automatically kick off a
 Travis build:
@@ -283,12 +292,15 @@ To git@github.com:jmcvetta/foofinder.git
 
 In your browser, click on the Travis logo in the upper left corner of the
 screen to return to the Travis home page.  You should now see `foofinder` in
-the "My Repositories" sidebar at the left of the screen.  Clicking on it kgg
+the "My Repositories" sidebar at the left of the screen.  Click on it to see
+the results of your test run.
+
+{% img images/travis-build.png Travis Build Results %}
 
 
-# Set up Drone.io
+# Drone.io
 
 
-# Set up Coveralls
+# Coveralls.io
 
 ## Add `goveralls` to Drone config.
