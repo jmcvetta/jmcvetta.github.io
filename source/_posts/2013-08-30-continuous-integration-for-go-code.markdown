@@ -6,6 +6,9 @@ comments: true
 categories: [Go, Continuous Integration]
 ---
 
+* list element with functor item
+{:toc}
+
 {% blockquote Martin Fowler http://www.martinfowler.com/articles/continuousIntegration.html Continuous Integration %}
 Continuous Integration is a software development practice where members of a
 team integrate their work frequently, usually each person integrates at least
@@ -459,7 +462,7 @@ REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.
 {% img /images/go_ci/coveralls-tech-details.png Locate the Repo Token %}
 
 
-## Add `goveralls` to Drone config
+## Add goveralls to Drone config
 
 Now we need to push some test coverage data to Coveralls.  We will do this by
 adding `goveralls`, a Coveralls client for Go code, to our Drone build script.
