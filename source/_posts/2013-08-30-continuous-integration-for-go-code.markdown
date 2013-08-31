@@ -7,11 +7,10 @@ categories: [Go, Continuous Integration]
 ---
 
 Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
-pipeline has become an increasingly standard practice at modern software
-companies.
+(CI) pipeline is a good practice at for software projects.
 
-Let's look at how to set up a ci pipeline for open source software written in
-[go](http://golang.org).  All the services we will use are free (like beer)
+Let's look at how to set up a CI pipeline for open source software written in
+[go](http://golang.org).  All the services mentioned here are free (like beer)
 when used for free (like freedom) software projects.
 
 
