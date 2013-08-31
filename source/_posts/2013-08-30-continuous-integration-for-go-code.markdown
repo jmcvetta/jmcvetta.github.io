@@ -222,6 +222,8 @@ Travis itself is open source, and free for use by open source projects.
 However it has some limitations for testing go code - in particular,
 `gocov` cannot currently be used with Travis.
 
+## Travis Configuration
+
 Travis reads its configuration from a file in the repository root.  Create a
 `.travis.yml` file with this content:
 
