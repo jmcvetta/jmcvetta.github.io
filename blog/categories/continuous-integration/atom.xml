@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous Integration | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/continuous-integration/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:06:12-07:00</updated>
+  <updated>2013-08-30T20:15:04-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -31,29 +31,9 @@ when used for free (like freedom) software projects.</p>
 <p>Start by creating a <a href="https://github.com/new">new repository on github</a>, naming
 it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
 
-<p>``` text
-$ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
-cloning into &lsquo;foofinder&rsquo;&hellip;
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+&mdash;[ rsa 2048]&mdash;&mdash;+
-|        .        |
-|       + .       |
-|      . b .      |
-|     o * +       |
-|    x * s        |
-|   + o o . .     |
-|    .   e . o    |
-|       . . o     |
-|        . .      |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
-
-<p>remote: counting objects: 8, done.
-remote: compressing objects: 100% (7/7), done.
-remote: total 8 (delta 2), reused 4 (delta 1)
-receiving objects: 100% (8/8), 12.87 kib, done.
-resolving deltas: 100% (2/2), done.</p>
-
-<p>$ cd foofinder/</p>
+<p>``` bash
+git clone git@github.com:jmcvetta/foofinder.git # substitute your username
+cd foofinder/ # Remaining commands assume they are in the &ldquo;foofinder&rdquo; folder</p>
 
 <p>```</p>
 
@@ -220,15 +200,10 @@ ok      github.com/jmcvetta/foofinder   0.011s</p>
 
 <p>Now we will commit our new files to the git repository:</p>
 
-<p>``` text
-$ git add foofinder.go foofinder_test.go</p>
-
-<p>$ git commit -m &ldquo;trivial program&rdquo;
-[master a09f2ab] trivial program
- 2 files changed, 37 insertions(+)
- create mode 100644 foofinder.go
- create mode 100644 foofinder_test.go
-```</p>
+<p><code>text
+git add foofinder.go foofinder_test.go
+git commit -m "trivial program"
+</code></p>
 
 <h1>Travis CI</h1>
 
@@ -266,14 +241,10 @@ but the <code>go get</code> command will not automatically fetch packages import
 
 <p>Add the travis configuration to git:</p>
 
-<p>``` text
-$ git add .travis.yml</p>
-
-<p>$ git commit -m &ldquo;travis configuration&rdquo;
-[master 3329dc4] travis configuration
- 1 file changed, 8 insertions(+)
- create mode 100644 .travis.yml
-```</p>
+<p><code>text
+git add .travis.yml
+git commit -m "travis configuration"
+</code></p>
 
 <h2>Activate Travis</h2>
 
@@ -352,35 +323,11 @@ the results of your test run.</p>
 
 <p>Commit and push the changes:</p>
 
-<p>```
-$ git add README.md</p>
-
-<p>$ git commit -m &ldquo;Travis status badge&rdquo;
-[master 6865b70] Travis status badge
- 1 file changed, 2 insertions(+)</p>
-
-<p>$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+&mdash;[ RSA 2048]&mdash;&mdash;+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
-
-<p>Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 381 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   3329dc4..6865b70  master &ndash;> master
-```</p>
+<p><code>
+git add README.md
+git commit -m "Travis status badge"
+git push
+</code></p>
 
 <p>Now when you look at the project&rsquo;s Github page, you will see a status badge
 that is automatically updated whenever a new build is run on Travis.</p>
@@ -470,35 +417,11 @@ setup correctly your build will complete successfully.</p>
 
 <p>Commit and push the changes:</p>
 
-<p>``` text
-$ git add README.md</p>
-
-<p>$ git commit -m &ldquo;Drone status badge&rdquo;
-[master 849ee55] Drone status badge
- 1 file changed, 1 insertion(+)</p>
-
-<p>$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+&mdash;[ RSA 2048]&mdash;&mdash;+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
-
-<p>Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 414 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   6865b70..849ee55  master &ndash;> master
-```</p>
+<p><code>text
+git add README.md
+git commit -m "Drone status badge"
+git push
+</code></p>
 
 <p>The Drone status badge is now visible on Github!</p>
 
@@ -617,35 +540,11 @@ the color-coded &ldquo;coverage&rdquo; badge.  Copy the Markdown from the ensuin
 
 <p>Commit and push the changes:</p>
 
-<p>``` text
-$ git add README.md</p>
-
-<p>$ git commit -m &ldquo;Coveralls status badge&rdquo;
-[master 5998b08] Coveralls status badge
- 1 file changed, 1 insertion(+)</p>
-
-<p>$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+&mdash;[ RSA 2048]&mdash;&mdash;+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
-
-<p>Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 391 bytes, done.
-Total 3 (delta 2), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   849ee55..5998b08  master &ndash;> master
-```</p>
+<p><code>text
+git add README.md
+git commit -m "Coveralls status badge"
+git push
+</code></p>
 
 <p>The coverage badge is now visible on Github!</p>
 

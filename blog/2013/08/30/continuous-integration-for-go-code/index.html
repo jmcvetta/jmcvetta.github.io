@@ -121,48 +121,8 @@ it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
-</span><span class='line'>cloning into &#39;foofinder&#39;...
-</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-</span><span class='line'>+--[ rsa 2048]----+
-</span><span class='line'>|        .        |
-</span><span class='line'>|       + .       |
-</span><span class='line'>|      . b .      |
-</span><span class='line'>|     o * +       |
-</span><span class='line'>|    x * s        |
-</span><span class='line'>|   + o o . .     |
-</span><span class='line'>|    .   e . o    |
-</span><span class='line'>|       . . o     |
-</span><span class='line'>|        . .      |
-</span><span class='line'>+-----------------+
-</span><span class='line'>
-</span><span class='line'>remote: counting objects: 8, done.
-</span><span class='line'>remote: compressing objects: 100% (7/7), done.
-</span><span class='line'>remote: total 8 (delta 2), reused 4 (delta 1)
-</span><span class='line'>receiving objects: 100% (8/8), 12.87 kib, done.
-</span><span class='line'>resolving deltas: 100% (2/2), done.
-</span><span class='line'>
-</span><span class='line'>$ cd foofinder/
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:jmcvetta/foofinder.git <span class="c"># substitute your username</span>
+</span><span class='line'><span class="nb">cd </span>foofinder/ <span class="c"># Remaining commands assume they are in the &quot;foofinder&quot; folder</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -418,18 +378,8 @@ the trailing <code>-</code>:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add foofinder.go foofinder_test.go
-</span><span class='line'>
-</span><span class='line'>$ git commit -m &quot;trivial program&quot;
-</span><span class='line'>[master a09f2ab] trivial program
-</span><span class='line'> 2 files changed, 37 insertions(+)
-</span><span class='line'> create mode 100644 foofinder.go
-</span><span class='line'> create mode 100644 foofinder_test.go
+</pre></td><td class='code'><pre><code class='text'><span class='line'>git add foofinder.go foofinder_test.go
+</span><span class='line'>git commit -m &quot;trivial program&quot;
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -476,16 +426,8 @@ but the <code>go get</code> command will not automatically fetch packages import
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add .travis.yml
-</span><span class='line'>
-</span><span class='line'>$ git commit -m &quot;travis configuration&quot;
-</span><span class='line'>[master 3329dc4] travis configuration
-</span><span class='line'> 1 file changed, 8 insertions(+)
-</span><span class='line'> create mode 100644 .travis.yml
+</pre></td><td class='code'><pre><code class='text'><span class='line'>git add .travis.yml
+</span><span class='line'>git commit -m &quot;travis configuration&quot;
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -596,57 +538,9 @@ the results of your test run.</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
-</span><span class='line'>
-</span><span class='line'>$ git commit -m &quot;Travis status badge&quot;
-</span><span class='line'>[master 6865b70] Travis status badge
-</span><span class='line'> 1 file changed, 2 insertions(+)
-</span><span class='line'>
-</span><span class='line'>$ git push
-</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-</span><span class='line'>+--[ RSA 2048]----+
-</span><span class='line'>|        .        |
-</span><span class='line'>|       + .       |
-</span><span class='line'>|      . B .      |
-</span><span class='line'>|     o * +       |
-</span><span class='line'>|    X * S        |
-</span><span class='line'>|   + O o . .     |
-</span><span class='line'>|    .   E . o    |
-</span><span class='line'>|       . . o     |
-</span><span class='line'>|        . .      |
-</span><span class='line'>+-----------------+
-</span><span class='line'>
-</span><span class='line'>Counting objects: 5, done.
-</span><span class='line'>Delta compression using up to 4 threads.
-</span><span class='line'>Compressing objects: 100% (3/3), done.
-</span><span class='line'>Writing objects: 100% (3/3), 381 bytes, done.
-</span><span class='line'>Total 3 (delta 1), reused 0 (delta 0)
-</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
-</span><span class='line'>   3329dc4..6865b70  master -&gt; master
+</pre></td><td class='code'><pre><code class='text'><span class='line'>git add README.md
+</span><span class='line'>git commit -m &quot;Travis status badge&quot;
+</span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -752,57 +646,9 @@ setup correctly your build will complete successfully.</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
-</span><span class='line'>
-</span><span class='line'>$ git commit -m &quot;Drone status badge&quot;
-</span><span class='line'>[master 849ee55] Drone status badge
-</span><span class='line'> 1 file changed, 1 insertion(+)
-</span><span class='line'>
-</span><span class='line'>$ git push
-</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-</span><span class='line'>+--[ RSA 2048]----+
-</span><span class='line'>|        .        |
-</span><span class='line'>|       + .       |
-</span><span class='line'>|      . B .      |
-</span><span class='line'>|     o * +       |
-</span><span class='line'>|    X * S        |
-</span><span class='line'>|   + O o . .     |
-</span><span class='line'>|    .   E . o    |
-</span><span class='line'>|       . . o     |
-</span><span class='line'>|        . .      |
-</span><span class='line'>+-----------------+
-</span><span class='line'>
-</span><span class='line'>Counting objects: 5, done.
-</span><span class='line'>Delta compression using up to 4 threads.
-</span><span class='line'>Compressing objects: 100% (3/3), done.
-</span><span class='line'>Writing objects: 100% (3/3), 414 bytes, done.
-</span><span class='line'>Total 3 (delta 1), reused 0 (delta 0)
-</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
-</span><span class='line'>   6865b70..849ee55  master -&gt; master
+</pre></td><td class='code'><pre><code class='text'><span class='line'>git add README.md
+</span><span class='line'>git commit -m &quot;Drone status badge&quot;
+</span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -943,57 +789,9 @@ the color-coded &ldquo;coverage&rdquo; badge.  Copy the Markdown from the ensuin
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
-</span><span class='line'>
-</span><span class='line'>$ git commit -m &quot;Coveralls status badge&quot;
-</span><span class='line'>[master 5998b08] Coveralls status badge
-</span><span class='line'> 1 file changed, 1 insertion(+)
-</span><span class='line'>
-</span><span class='line'>$ git push
-</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-</span><span class='line'>+--[ RSA 2048]----+
-</span><span class='line'>|        .        |
-</span><span class='line'>|       + .       |
-</span><span class='line'>|      . B .      |
-</span><span class='line'>|     o * +       |
-</span><span class='line'>|    X * S        |
-</span><span class='line'>|   + O o . .     |
-</span><span class='line'>|    .   E . o    |
-</span><span class='line'>|       . . o     |
-</span><span class='line'>|        . .      |
-</span><span class='line'>+-----------------+
-</span><span class='line'>
-</span><span class='line'>Counting objects: 5, done.
-</span><span class='line'>Delta compression using up to 4 threads.
-</span><span class='line'>Compressing objects: 100% (3/3), done.
-</span><span class='line'>Writing objects: 100% (3/3), 391 bytes, done.
-</span><span class='line'>Total 3 (delta 2), reused 0 (delta 0)
-</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
-</span><span class='line'>   849ee55..5998b08  master -&gt; master
+</pre></td><td class='code'><pre><code class='text'><span class='line'>git add README.md
+</span><span class='line'>git commit -m &quot;Coveralls status badge&quot;
+</span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>
 
 
