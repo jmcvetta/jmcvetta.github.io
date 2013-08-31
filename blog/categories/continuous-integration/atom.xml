@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous Integration | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/continuous-integration/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:38:27-07:00</updated>
+  <updated>2013-08-30T20:50:03-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -18,7 +18,9 @@
     <link href="http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/"/>
     <updated>2013-08-30T12:50:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
-    <content type="html"><![CDATA[<p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
+    <content type="html"><![CDATA[<p><blockquote><p>Continuous Integration is a software development practice where members of a<br/>team integrate their work frequently, usually each person integrates at least<br/>daily &ndash; leading to multiple integrations per day. Each integration is verified<br/>by an automated build (including test) to detect integration errors as quickly<br/>as possible. Many teams find that this approach leads to significantly reduced<br/>integration problems and allows a team to develop cohesive software more<br/>rapidly.</p><footer><strong>Martin Fowler <a href="http://www.martinfowler.com/articles/continuousIntegration.html">http://www.martinfowler.com/articles/continuousIntegration.html</a> Continuous Integration</strong></footer></blockquote></p>
+
+<p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
 (CI) pipeline is a good practice for any software project.  CI lets a developer
 know immediately if they commit changes that break any unit tests, or decrease
 test coverage.</p>
