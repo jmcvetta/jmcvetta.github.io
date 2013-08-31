@@ -13,7 +13,7 @@ test coverage.
 
 Let's look at how to set up a CI pipeline for open source software written in
 [Go](http://golang.org).  All the services mentioned here are free (like beer)
-when used for free (like freedom) software projects.
+when used for Free (like freedom) Software projects.
 
 
 # Create project
