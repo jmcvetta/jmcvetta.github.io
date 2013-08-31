@@ -27,9 +27,9 @@ cd foofinder/ # Remaining commands assume they are in the "foofinder" folder
 ```
 
 
-Create a file `foofinder.go` with the following content:
-
 ## Write some code
+
+Create a file `foofinder.go` with the following content:
 
 ``` go
 package foofinder
