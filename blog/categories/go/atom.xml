@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Go | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T19:38:30-07:00</updated>
+  <updated>2013-08-30T19:52:35-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -281,17 +281,17 @@ $ git add .travis.yml</p>
 the upper right corner of the screen.  If you have never logged in to travis
 before you will be prompted by Github to grant OAuth permissions to Travis.</p>
 
-<p><img src="images/go_ci/travis-signin.png" title="travis sign-in" ></p>
+<p><img src="/images/go_ci/travis-signin.png" title="travis sign-in" ></p>
 
 <p>Once you are logged in, click on your username in the upper right corner, and
 choose &ldquo;Accounts&rdquo; from the dropdown.</p>
 
-<p><img src="images/go_ci/travis-accounts.png" title="travis accounts" ></p>
+<p><img src="/images/go_ci/travis-accounts.png" title="travis accounts" ></p>
 
 <p>Travis will display a list of all your Github repositories.  locate <code>foofinder</code>,
 and click the OFF/ON toggle beside it.  The toggle will slide to &ldquo;ON&rdquo;.</p>
 
-<p><img src="images/go_ci/travis-repos.png" title="travis repositories" ></p>
+<p><img src="/images/go_ci/travis-repos.png" title="travis repositories" ></p>
 
 <p>Now we push our commits to Github, which will automatically kick off a
 Travis build:</p>
@@ -325,7 +325,7 @@ screen to return to the travis home page.  You should now see <code>foofinder</c
 the &ldquo;my repositories&rdquo; sidebar at the left of the screen.  Click on it to see
 the results of your test run.</p>
 
-<p><img src="images/go_ci/travis-build.png" title="travis build results" ></p>
+<p><img src="/images/go_ci/travis-build.png" title="travis build results" ></p>
 
 <h2>Status badge</h2>
 
@@ -333,11 +333,11 @@ the results of your test run.</p>
 
 <p>Click on the gear icon and choose &ldquo;Status Images&rdquo;:</p>
 
-<p><img src="images/go_ci/travis-status-images-link.png"></p>
+<p><img src="/images/go_ci/travis-status-images-link.png"></p>
 
 <p>Copy the Markdown link from the ensuing dialog.</p>
 
-<p><img src="images/go_ci/travis-status-images.png"></p>
+<p><img src="/images/go_ci/travis-status-images.png"></p>
 
 <p>Paste the Markdown into the <code>README.md</code> file:</p>
 
@@ -385,7 +385,7 @@ To git@github.com:jmcvetta/foofinder.git
 <p>Now when you look at the project&rsquo;s Github page, you will see a status badge
 that is automatically updated whenever a new build is run on Travis.</p>
 
-<p><img src="images/go_ci/travis-status-badge.png" title="Travis badge on Github" ></p>
+<p><img src="/images/go_ci/travis-status-badge.png" title="Travis badge on Github" ></p>
 
 <h1>Drone.io</h1>
 
@@ -401,29 +401,29 @@ Instead it is configured through its web interface.</p>
 <p>Start by opening <a href="http://drone.io">http://drone.io</a> in your browser.  Click &ldquo;Login&rdquo; in the upper
 right of the screen.</p>
 
-<p><img src="images/go_ci/drone-login.png" title="Login to Drone" ></p>
+<p><img src="/images/go_ci/drone-login.png" title="Login to Drone" ></p>
 
 <p>On the login page, choose Github from the list of third-party login providers.
 If you have never logged in to Drone before, Github will prompt you to grant
 OAuth permissions.</p>
 
-<p><img src="images/go_ci/drone-login-provider.png" title="Drone Login Providers" ></p>
+<p><img src="/images/go_ci/drone-login-provider.png" title="Drone Login Providers" ></p>
 
 <p>Once you are logged in, click on the &ldquo;New Project&rdquo; link at the top of the page.</p>
 
-<p><img src="images/go_ci/drone-new-project.png" title="New Project" ></p>
+<p><img src="/images/go_ci/drone-new-project.png" title="New Project" ></p>
 
 <p>On the repository setup page, select Github.</p>
 
-<p><img src="images/go_ci/drone-repo-setup.png" title="Repository Setup" ></p>
+<p><img src="/images/go_ci/drone-repo-setup.png" title="Repository Setup" ></p>
 
 <p>Locate <code>foofinder</code> in the list of your repositories, and click &ldquo;Select&rdquo;.</p>
 
-<p><img src="images/go_ci/drone-select-repo.png" title="Select Repository" ></p>
+<p><img src="/images/go_ci/drone-select-repo.png" title="Select Repository" ></p>
 
 <p>Choose Go from the project setup menu.</p>
 
-<p><img src="images/go_ci/drone-golang.png" title="Setup Go project" ></p>
+<p><img src="/images/go_ci/drone-golang.png" title="Setup Go project" ></p>
 
 <p>You will be taken to the build script screen.</p>
 
@@ -437,24 +437,24 @@ go get github.com/bmizerany/assert
 go test -v
 </code></p>
 
-<p><img src="images/go_ci/drone-setup-initial.png" title="Initial Drone build script" ></p>
+<p><img src="/images/go_ci/drone-setup-initial.png" title="Initial Drone build script" ></p>
 
 <p>Click &ldquo;Save&rdquo; and you will be taken to the Settings screen.  No changes need
 to be made here.</p>
 
-<p><img src="images/go_ci/drone-settings-initial.png" title="Initial Drone settings page" ></p>
+<p><img src="/images/go_ci/drone-settings-initial.png" title="Initial Drone settings page" ></p>
 
 <p>Click &ldquo;Build Now&rdquo; to kick off the first build!  Every time a new commit is
 pushed to Github, Drone will automatically start a build.  If everything is
 setup correctly your build will complete successfully.</p>
 
-<p><img src="images/go_ci/drone-build-success.png" title="First Drone build was successful" ></p>
+<p><img src="/images/go_ci/drone-build-success.png" title="First Drone build was successful" ></p>
 
 <h2>Status badge</h2>
 
 <p>In your Drone project settings, click on &ldquo;Status Badges&rdquo;.</p>
 
-<p><img src="images/go_ci/drone-status-markdown.png" title="Markdown for status badge" ></p>
+<p><img src="/images/go_ci/drone-status-markdown.png" title="Markdown for status badge" ></p>
 
 <p>Copy the Markdown, and paste it into your <code>README.md</code> file:</p>
 
@@ -502,7 +502,7 @@ To git@github.com:jmcvetta/foofinder.git
 
 <p>The Drone status badge is now visible on Github!</p>
 
-<p><img src="images/go_ci/drone-status-badge.png" title="Drone status badge" ></p>
+<p><img src="/images/go_ci/drone-status-badge.png" title="Drone status badge" ></p>
 
 <h1>Coveralls.io</h1>
 
@@ -515,28 +515,28 @@ free for use by open source projects.</p>
 GITHUB&rdquo; in the upper right corner.  If you have never logged in to Coveralls
 before, Github will prompt you to grant OAuth permissions to Coveralls.</p>
 
-<p><img src="images/go_ci/coveralls-home.png" title="Coveralls Sign In" ></p>
+<p><img src="/images/go_ci/coveralls-home.png" title="Coveralls Sign In" ></p>
 
 <p>Once you are logged in, click on &ldquo;Add Repo&rdquo;.</p>
 
-<p><img src="images/go_ci/coveralls-signed-in.png" title="Click on Add Repo" ></p>
+<p><img src="/images/go_ci/coveralls-signed-in.png" title="Click on Add Repo" ></p>
 
 <p>Coveralls does not automatically refresh its list of your Github repositories.
 You will need to manually sync it whenever you add a new repo on Github.  Click
 &ldquo;SYNC GITHUB REPOS&rdquo;.  The operation may take several seconds.</p>
 
-<p><img src="images/go_ci/coveralls-sync.png" title="Sync Repos" ></p>
+<p><img src="/images/go_ci/coveralls-sync.png" title="Sync Repos" ></p>
 
 <p>Locate <code>foofinder</code> in the list of repositories, and click the OFF/ON toggle.  It
 will slide over to ON, and a &ldquo;VIEW ON COVERALLS&rdquo; button will appear.  Sometimes
 it may be necessary to refresh the page to see the button.</p>
 
-<p><img src="images/go_ci/coveralls-toggle.png" title="Toggle Coveralls for the project" ></p>
+<p><img src="/images/go_ci/coveralls-toggle.png" title="Toggle Coveralls for the project" ></p>
 
 <p>Click &ldquo;VIEW ON COVERALLS&rdquo; and you will be taken to the setup page.  Locate the
 REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.</p>
 
-<p><img src="images/go_ci/coveralls-tech-details.png" title="Locate the Repo Token" ></p>
+<p><img src="/images/go_ci/coveralls-tech-details.png" title="Locate the Repo Token" ></p>
 
 <h2>Add <code>goveralls</code> to Drone config</h2>
 
@@ -569,34 +569,34 @@ COVERALLS_TOKEN=paste_your_token_here
 <p>Note, the Environment Variables of a Drone project are not visible to the
 public, but the Commands are.</p>
 
-<p><img src="images/go_ci/drone-coveralls-settings.png" title="Configure Drone to work with Coveralls" ></p>
+<p><img src="/images/go_ci/drone-coveralls-settings.png" title="Configure Drone to work with Coveralls" ></p>
 
 <p>Click &ldquo;Save&rdquo;, then click &ldquo;Build Now&rdquo; to kick off a new build.  If everything
 is set up correctly, the build will display a Coveralls job link when it
 completes.</p>
 
-<p><img src="images/go_ci/drone-coveralls-success.png" title="Successful push to Coveralls" ></p>
+<p><img src="/images/go_ci/drone-coveralls-success.png" title="Successful push to Coveralls" ></p>
 
 <p>Refresh your project&rsquo;s Coveralls page, and you will see code coverage data!</p>
 
-<p><img src="images/go_ci/coveralls-first-build.png" title="First build" ></p>
+<p><img src="/images/go_ci/coveralls-first-build.png" title="First build" ></p>
 
 <p>Click on the build number &ndash; in this case, &ldquo;#1&rdquo; &ndash; to explore coverage in the
 build.</p>
 
-<p><img src="images/go_ci/coveralls-build-details.png" title="Build Details" ></p>
+<p><img src="/images/go_ci/coveralls-build-details.png" title="Build Details" ></p>
 
 <p>By clicking on an individual file name, you can view color coded code coverage
 for that file.</p>
 
-<p><img src="images/go_ci/coveralls-file-details.png" title="Source File Details" ></p>
+<p><img src="/images/go_ci/coveralls-file-details.png" title="Source File Details" ></p>
 
 <h2>Status Badge</h2>
 
 <p>On your project&rsquo;s Coveralls page, click the &ldquo;Get Badge URLs&rdquo; link, just below
 the color-coded &ldquo;coverage&rdquo; badge.  Copy the Markdown from the ensuing popup:</p>
 
-<p><img src="images/go_ci/coveralls-badge-markdown.png" title="Badge markdown" ></p>
+<p><img src="/images/go_ci/coveralls-badge-markdown.png" title="Badge markdown" ></p>
 
 <p>Paste the Markdown into your <code>README.md</code> file:</p>
 
@@ -645,7 +645,7 @@ To git@github.com:jmcvetta/foofinder.git
 
 <p>The coverage badge is now visible on Github!</p>
 
-<p><img src="images/go_ci/coveralls-badge.png" title="Coveralls status badge" ></p>
+<p><img src="/images/go_ci/coveralls-badge.png" title="Coveralls status badge" ></p>
 
 <p>Uh-oh, that badge is red.  Not-so-shiny.  :(  We better get to work improving
 our test coverage!</p>
