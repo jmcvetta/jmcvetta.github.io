@@ -48,7 +48,7 @@ $ cd foofinder/
 
 Create a file `foofinder.go` with the following content:
 
-## write some code
+## Write some code
 
 ``` go
 package foofinder
@@ -68,9 +68,9 @@ func IsItFoo(word string) (bool, error) {
 ```
 
 
-## write a test
+## Write a test
 
-create a file `foofinder_test.go` with this content:
+Create a file `foofinder_test.go` with this content:
 
 ``` go
 package foofinder
