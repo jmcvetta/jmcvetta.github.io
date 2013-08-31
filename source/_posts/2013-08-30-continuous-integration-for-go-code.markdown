@@ -12,13 +12,13 @@ know immediately if they commit changes that break any unit tests, or decrease
 test coverage.
 
 Let's look at how to set up a CI pipeline for open source software written in
-[go](http://golang.org).  All the services mentioned here are free (like beer)
+[Go](http://golang.org).  All the services mentioned here are free (like beer)
 when used for free (like freedom) software projects.
 
 
 # Create project
 
-Start by creating a [new repository on github](https://github.com/new), naming
+Start by creating a [new repository on Github](https://github.com/new), naming
 it `foofinder`.  Now clone the repo to your local machine:
 
 ``` bash
