@@ -117,7 +117,7 @@ companies.</p>
 <a href="http://golang.org">go</a>.  All the services we will use are free (like beer)
 when used for free (like freedom) software projects.</p>
 
-<h1>Create a new project on Github</h1>
+<h1>Create project</h1>
 
 <p>Start by creating a <a href="https://github.com/new">new repository on github</a>, naming
 it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
@@ -664,7 +664,7 @@ that is automatically updated whenever a new build is run on Travis.</p>
 ways similar to Travis CI.  Drone provides a more &ldquo;vanilla&rdquo;  build
 environment than Travis, that works great with <code>gocov</code> and friends.  Although
 Drone itself is proprietary, it is free for use by open source projects.  The
-backend of drone is written in go.</p>
+backend of Drone is written in Go.</p>
 
 <p>Unlike Travis, Drone does not require a configuration file in the repository.
 Instead it is configured through its web interface.</p>
@@ -896,6 +896,10 @@ completes.</p>
 <p><img src="/images/go_ci/drone-coveralls-success.png" title="Successful push to Coveralls" ></p>
 
 <p>Refresh your project&rsquo;s Coveralls page, and you will see code coverage data!</p>
+
+<p>Note the coverage percentage calculated by Coveralls sometimes disagrees with
+that calculated by <code>gocov report</code>.  Afaik this has to do with how they count
+&ldquo;meaningful&rdquo; lines of code.</p>
 
 <p><img src="/images/go_ci/coveralls-first-build.png" title="First build" ></p>
 
