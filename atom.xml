@@ -4,7 +4,7 @@
   <title><![CDATA[Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T21:30:39-07:00</updated>
+  <updated>2013-08-30T21:32:18-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -18,7 +18,9 @@
     <link href="http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/"/>
     <updated>2013-08-30T12:50:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
-    <content type="html"><![CDATA[<ul id="markdown-toc">
+    <content type="html"><![CDATA[<blockquote><p>Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.</p><footer><strong>Martin Fowler</strong> <cite><a href="http://www.martinfowler.com/articles/continuousIntegration.html">Continuous Integration</a></cite></footer></blockquote>
+
+<ul id="markdown-toc">
   <li><a href="#create-project">Create project</a>    <ul>
       <li><a href="#write-some-code">Write some code</a></li>
       <li><a href="#write-a-test">Write a test</a></li>
@@ -44,14 +46,12 @@
   </li>
 </ul>
 
-<blockquote><p>Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.</p><footer><strong>Martin Fowler</strong> <cite><a href="http://www.martinfowler.com/articles/continuousIntegration.html">Continuous Integration</a></cite></footer></blockquote>
-
 <p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
 (CI) pipeline is a good practice for any software project.  CI lets a developer
 know immediately if they commit changes that break any unit tests, or decrease
 test coverage.</p>
 
-<p>Let’s look at how to set up a CI pipeline for open source software written in
+<p>Let&rsquo;s look at how to set up a CI pipeline for open source software written in
 <a href="http://golang.org">Go</a>.  All the services mentioned here are free (like beer)
 when used for Free (like freedom) Software projects.</p>
 
@@ -136,7 +136,7 @@ it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Now let’s run our test and see if it worked:</p>
+<p>Now let&rsquo;s run our test and see if it worked:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -274,7 +274,7 @@ report</code> produces a human-readable summary:</p>
 </span><span class="line">github.com/jmcvetta/foofinder			 ------- 40.00% <span class="o">(</span>2/5<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>For a more detailed look at your code’s coverage, use <code>gocov annotate</code>.  Note
+<p>For a more detailed look at your code&rsquo;s coverage, use <code>gocov annotate</code>.  Note
 the trailing <code>-</code>:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -363,19 +363,19 @@ but the <code>go get</code> command will not automatically fetch packages import
 
 <h2 id="activate-travis">Activate Travis</h2>
 
-<p>Open https://travis-ci.org in your browser.  Click on “Sign in with Github”, in
+<p>Open https://travis-ci.org in your browser.  Click on &ldquo;Sign in with Github&rdquo;, in
 the upper right corner of the screen.  If you have never logged in to travis
 before you will be prompted by Github to grant OAuth permissions to Travis.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-signin.png" title="travis sign-in" /></p>
 
 <p>Once you are logged in, click on your username in the upper right corner, and
-choose “Accounts” from the dropdown.</p>
+choose &ldquo;Accounts&rdquo; from the dropdown.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-accounts.png" title="travis accounts" /></p>
 
 <p>Travis will display a list of all your Github repositories.  locate <code>foofinder</code>,
-and click the OFF/ON toggle beside it.  The toggle will slide to “ON”.</p>
+and click the OFF/ON toggle beside it.  The toggle will slide to &ldquo;ON&rdquo;.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-repos.png" title="travis repositories" /></p>
 
@@ -428,7 +428,7 @@ Travis build:</p>
 
 <p>In your browser, click on the Travis logo in the upper left corner of the
 screen to return to the travis home page.  You should now see <code>foofinder</code> in
-the “my repositories” sidebar at the left of the screen.  Click on it to see
+the &ldquo;my repositories&rdquo; sidebar at the left of the screen.  Click on it to see
 the results of your test run.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-build.png" title="travis build results" /></p>
@@ -437,7 +437,7 @@ the results of your test run.</p>
 
 <p>After all this work comes the reward:  a nice, shiny green status badge!</p>
 
-<p>Click on the gear icon and choose “Status Images”:</p>
+<p>Click on the gear icon and choose &ldquo;Status Images&rdquo;:</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-status-images-link.png" /></p>
 
@@ -471,7 +471,7 @@ the results of your test run.</p>
 </span><span class="line">git push
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Now when you look at the project’s Github page, you will see a status badge
+<p>Now when you look at the project&rsquo;s Github page, you will see a status badge
 that is automatically updated whenever a new build is run on Travis.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/travis-status-badge.png" title="Travis badge on Github" /></p>
@@ -479,7 +479,7 @@ that is automatically updated whenever a new build is run on Travis.</p>
 <h1 id="droneio">Drone.io</h1>
 
 <p><a href="http://drone.io">Drone</a> is a hosted continuous integration service, in some
-ways similar to Travis CI.  Drone provides a more “vanilla”  build
+ways similar to Travis CI.  Drone provides a more &ldquo;vanilla&rdquo;  build
 environment than Travis, that works great with <code>gocov</code> and friends.  Although
 Drone itself is proprietary, it is free for use by open source projects.  The
 backend of Drone is written in Go.</p>
@@ -487,7 +487,7 @@ backend of Drone is written in Go.</p>
 <p>Unlike Travis, Drone does not require a configuration file in the repository.
 Instead it is configured through its web interface.</p>
 
-<p>Start by opening http://drone.io in your browser.  Click “Login” in the upper
+<p>Start by opening http://drone.io in your browser.  Click &ldquo;Login&rdquo; in the upper
 right of the screen.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-login.png" title="Login to Drone" /></p>
@@ -498,7 +498,7 @@ OAuth permissions.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-login-provider.png" title="Drone Login Providers" /></p>
 
-<p>Once you are logged in, click on the “New Project” link at the top of the page.</p>
+<p>Once you are logged in, click on the &ldquo;New Project&rdquo; link at the top of the page.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-new-project.png" title="New Project" /></p>
 
@@ -506,7 +506,7 @@ OAuth permissions.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-repo-setup.png" title="Repository Setup" /></p>
 
-<p>Locate <code>foofinder</code> in the list of your repositories, and click “Select”.</p>
+<p>Locate <code>foofinder</code> in the list of your repositories, and click &ldquo;Select&rdquo;.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-select-repo.png" title="Select Repository" /></p>
 
@@ -531,12 +531,12 @@ the default build script with this:</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-setup-initial.png" title="Initial Drone build script" /></p>
 
-<p>Click “Save” and you will be taken to the Settings screen.  No changes need
+<p>Click &ldquo;Save&rdquo; and you will be taken to the Settings screen.  No changes need
 to be made here.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-settings-initial.png" title="Initial Drone settings page" /></p>
 
-<p>Click “Build Now” to kick off the first build!  Every time a new commit is
+<p>Click &ldquo;Build Now&rdquo; to kick off the first build!  Every time a new commit is
 pushed to Github, Drone will automatically start a build.  If everything is
 setup correctly your build will complete successfully.</p>
 
@@ -544,7 +544,7 @@ setup correctly your build will complete successfully.</p>
 
 <h2 id="status-badge-1">Status badge</h2>
 
-<p>In your Drone project settings, click on “Status Badges”.</p>
+<p>In your Drone project settings, click on &ldquo;Status Badges&rdquo;.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-status-markdown.png" title="Markdown for status badge" /></p>
 
@@ -587,29 +587,29 @@ free for use by open source projects.</p>
 
 <h2 id="configure-coveralls">Configure Coveralls</h2>
 
-<p>Start by opening http://coveralls.io in your browser.  Click “SIGN IN WITH
-GITHUB” in the upper right corner.  If you have never logged in to Coveralls
+<p>Start by opening http://coveralls.io in your browser.  Click &ldquo;SIGN IN WITH
+GITHUB&rdquo; in the upper right corner.  If you have never logged in to Coveralls
 before, Github will prompt you to grant OAuth permissions to Coveralls.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-home.png" title="Coveralls Sign In" /></p>
 
-<p>Once you are logged in, click on “Add Repo”.</p>
+<p>Once you are logged in, click on &ldquo;Add Repo&rdquo;.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-signed-in.png" title="Click on Add Repo" /></p>
 
 <p>Coveralls does not automatically refresh its list of your Github repositories.
 You will need to manually sync it whenever you add a new repo on Github.  Click
-“SYNC GITHUB REPOS”.  The operation may take several seconds.</p>
+&ldquo;SYNC GITHUB REPOS&rdquo;.  The operation may take several seconds.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-sync.png" title="Sync Repos" /></p>
 
 <p>Locate <code>foofinder</code> in the list of repositories, and click the OFF/ON toggle.  It
-will slide over to ON, and a “VIEW ON COVERALLS” button will appear.  Sometimes
+will slide over to ON, and a &ldquo;VIEW ON COVERALLS&rdquo; button will appear.  Sometimes
 it may be necessary to refresh the page to see the button.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-toggle.png" title="Toggle Coveralls for the project" /></p>
 
-<p>Click “VIEW ON COVERALLS” and you will be taken to the setup page.  Locate the
+<p>Click &ldquo;VIEW ON COVERALLS&rdquo; and you will be taken to the setup page.  Locate the
 REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-tech-details.png" title="Locate the Repo Token" /></p>
@@ -654,21 +654,21 @@ public, but the Commands are.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-coveralls-settings.png" title="Configure Drone to work with Coveralls" /></p>
 
-<p>Click “Save”, then click “Build Now” to kick off a new build.  If everything
+<p>Click &ldquo;Save&rdquo;, then click &ldquo;Build Now&rdquo; to kick off a new build.  If everything
 is set up correctly, the build will display a Coveralls job link when it
 completes.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/drone-coveralls-success.png" title="Successful push to Coveralls" /></p>
 
-<p>Refresh your project’s Coveralls page, and you will see code coverage data!</p>
+<p>Refresh your project&rsquo;s Coveralls page, and you will see code coverage data!</p>
 
 <p>Note the coverage percentage calculated by Coveralls sometimes disagrees with
 that calculated by <code>gocov report</code>.  Afaik this has to do with how they count
-“meaningful” lines of code.</p>
+&ldquo;meaningful&rdquo; lines of code.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-first-build.png" title="First build" /></p>
 
-<p>Click on the build number - in this case, “#1” - to explore coverage in the
+<p>Click on the build number - in this case, &ldquo;#1&rdquo; - to explore coverage in the
 build.</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-build-details.png" title="Build Details" /></p>
@@ -680,8 +680,8 @@ for that file.</p>
 
 <h2 id="status-badge-2">Status Badge</h2>
 
-<p>On your project’s Coveralls page, click the “Get Badge URLs” link, just below
-the color-coded “coverage” badge.  Copy the Markdown from the ensuing popup:</p>
+<p>On your project&rsquo;s Coveralls page, click the &ldquo;Get Badge URLs&rdquo; link, just below
+the color-coded &ldquo;coverage&rdquo; badge.  Copy the Markdown from the ensuing popup:</p>
 
 <p><img src="http://jmcvetta.github.io/images/go_ci/coveralls-badge-markdown.png" title="Badge markdown" /></p>
 
