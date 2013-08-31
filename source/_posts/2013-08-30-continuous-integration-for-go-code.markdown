@@ -24,7 +24,7 @@ it `foofinder`.  Now clone the repo to your local machine:
 ``` text
 $ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
 cloning into 'foofinder'...
-host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
 +--[ rsa 2048]----+
 |        .        |
 |       + .       |
@@ -276,7 +276,7 @@ Travis build:
 
 ``` text
 $ git push
-host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
 +--[ rsa 2048]----+
 |        .        |
 |       + .       |
@@ -304,6 +304,69 @@ the "my repositories" sidebar at the left of the screen.  Click on it to see
 the results of your test run.
 
 {% img images/travis-build.png travis build results %}
+
+
+## Status badge
+
+After all this work comes the reward:  a nice, shiny green status badge!
+
+Click on the gear icon and choose "Status Images":
+
+{% img images/travis-status-images-link.png %}
+
+Copy the Markdown link from the ensuing dialog.
+
+{% img images/travis-status-images.png %}
+
+Paste the Markdown into the `README.md` file:
+
+``` text
+foofinder
+=========
+
+Silly example for a blog post
+
+[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+```
+
+
+Commit and push the changes:
+
+```
+$ git add README.md
+
+$ git commit -m "Travis status badge"
+[master 6865b70] Travis status badge
+ 1 file changed, 2 insertions(+)
+
+$ git push
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ RSA 2048]----+
+|        .        |
+|       + .       |
+|      . B .      |
+|     o * +       |
+|    X * S        |
+|   + O o . .     |
+|    .   E . o    |
+|       . . o     |
+|        . .      |
++-----------------+
+
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 381 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@github.com:jmcvetta/foofinder.git
+   3329dc4..6865b70  master -> master
+```
+
+Now when you look at the project's Github page, you will see a status badge
+that is automatically updated whenever a new build is run on Travis.
+
+{% img images/travis-status-badge.png Travis badge on Github %}
+
 
 
 # Drone.io
@@ -369,6 +432,60 @@ setup correctly your build will complete successfully.
 
 {% img images/drone-build-success.png First Drone build was successful %}
 
+
+## Status badge
+
+In your Drone project settings, click on "Status Badges".
+
+{% img images/drone-status-markdown.png Markdown for status badge %}
+
+Copy the Markdown, and paste it into your `README.md` file:
+
+``` text
+foofinder
+=========
+
+Silly example for a blog post
+
+[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+[![Build Status](https://drone.io/github.com/jmcvetta/foofinder/status.png)](https://drone.io/github.com/jmcvetta/foofinder/latest)
+```
+
+Commit and push the changes:
+
+``` text
+$ git add README.md
+
+$ git commit -m "Drone status badge"
+[master 849ee55] Drone status badge
+ 1 file changed, 1 insertion(+)
+
+$ git push
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ RSA 2048]----+
+|        .        |
+|       + .       |
+|      . B .      |
+|     o * +       |
+|    X * S        |
+|   + O o . .     |
+|    .   E . o    |
+|       . . o     |
+|        . .      |
++-----------------+
+
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 414 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@github.com:jmcvetta/foofinder.git
+   6865b70..849ee55  master -> master
+```
+
+The Drone status badge is now visible on Github!
+
+{% img images/drone-status-badge.png Drone status badge %}
 
 
 # Coveralls.io
@@ -459,3 +576,63 @@ By clicking on an individual file name, you can view color coded code coverage
 for that file.
 
 {% img images/coveralls-file-details.png Source File Details %}
+
+
+## Status Badge
+
+On your project's Coveralls page, click the "Get Badge URLs" link, just below
+the color-coded "coverage" badge.  Copy the Markdown from the ensuing popup:
+
+{% img images/coveralls-badge-markdown.png Badge markdown %}
+
+Paste the Markdown into your `README.md` file:
+
+``` text
+foofinder
+=========
+
+Silly example for a blog post
+
+[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+[![Build Status](https://drone.io/github.com/jmcvetta/foofinder/status.png)](https://drone.io/github.com/jmcvetta/foofinder/latest)
+[![Coverage Status](https://coveralls.io/repos/jmcvetta/foofinder/badge.png?branch=master)](https://coveralls.io/r/jmcvetta/foofinder?branch=master)
+```
+
+Commit and push the changes:
+
+``` text
+$ git add README.md
+
+$ git commit -m "Coveralls status badge"
+[master 5998b08] Coveralls status badge
+ 1 file changed, 1 insertion(+)
+
+$ git push
+Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ RSA 2048]----+
+|        .        |
+|       + .       |
+|      . B .      |
+|     o * +       |
+|    X * S        |
+|   + O o . .     |
+|    .   E . o    |
+|       . . o     |
+|        . .      |
++-----------------+
+
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 391 bytes, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To git@github.com:jmcvetta/foofinder.git
+   849ee55..5998b08  master -> master
+```
+
+The coverage badge is now visible on Github!
+
+{% img images/coveralls-badge.png Coveralls status badge %}
+
+Uh-oh, that badge is red.  Not-so-shiny.  :(  We better get to work improving
+our test coverage!
