@@ -4,7 +4,7 @@
   <title><![CDATA[Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:28:50-07:00</updated>
+  <updated>2013-08-30T20:30:34-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -19,7 +19,9 @@
     <updated>2013-08-30T12:50:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
     <content type="html"><![CDATA[<p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
-(CI) pipeline is a good practice at for software projects.</p>
+(CI) pipeline is a good practice for any software project.  CI lets a developer
+know immediately if they commit changes that break any unit tests, or decrease
+test coverage.</p>
 
 <p>Let&rsquo;s look at how to set up a CI pipeline for open source software written in
 <a href="http://golang.org">go</a>.  All the services mentioned here are free (like beer)
