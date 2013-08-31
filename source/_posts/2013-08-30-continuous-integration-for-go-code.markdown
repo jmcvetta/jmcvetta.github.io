@@ -6,6 +6,16 @@ comments: true
 categories: [Go, Continuous Integration]
 ---
 
+{% blockquote Martin Fowler http://www.martinfowler.com/articles/continuousIntegration.html Continuous Integration %}
+Continuous Integration is a software development practice where members of a
+team integrate their work frequently, usually each person integrates at least
+daily - leading to multiple integrations per day. Each integration is verified
+by an automated build (including test) to detect integration errors as quickly
+as possible. Many teams find that this approach leads to significantly reduced
+integration problems and allows a team to develop cohesive software more
+rapidly.
+{% endblockquote %}
+
 Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
 (CI) pipeline is a good practice for any software project.  CI lets a developer
 know immediately if they commit changes that break any unit tests, or decrease
