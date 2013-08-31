@@ -4,7 +4,6 @@ title: "continuous integration for go code"
 date: 2013-08-30 12:50
 comments: true
 categories:
-published: false
 ---
 
 Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
