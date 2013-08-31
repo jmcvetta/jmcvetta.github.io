@@ -20,29 +20,9 @@ when used for free (like freedom) software projects.
 Start by creating a [new repository on github](https://github.com/new), naming
 it `foofinder`.  Now clone the repo to your local machine:
 
-``` text
-$ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
-cloning into 'foofinder'...
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ rsa 2048]----+
-|        .        |
-|       + .       |
-|      . b .      |
-|     o * +       |
-|    x * s        |
-|   + o o . .     |
-|    .   e . o    |
-|       . . o     |
-|        . .      |
-+-----------------+
-
-remote: counting objects: 8, done.
-remote: compressing objects: 100% (7/7), done.
-remote: total 8 (delta 2), reused 4 (delta 1)
-receiving objects: 100% (8/8), 12.87 kib, done.
-resolving deltas: 100% (2/2), done.
-
-$ cd foofinder/
+``` bash
+git clone git@github.com:jmcvetta/foofinder.git # substitute your username
+cd foofinder/ # Remaining commands assume they are in the "foofinder" folder
 
 ```
 
@@ -202,13 +182,8 @@ ok  	github.com/jmcvetta/foofinder	0.011s
 Now we will commit our new files to the git repository:
 
 ``` text
-$ git add foofinder.go foofinder_test.go
-
-$ git commit -m "trivial program"
-[master a09f2ab] trivial program
- 2 files changed, 37 insertions(+)
- create mode 100644 foofinder.go
- create mode 100644 foofinder_test.go
+git add foofinder.go foofinder_test.go
+git commit -m "trivial program"
 ```
 
 
@@ -246,12 +221,8 @@ but the `go get` command will not automatically fetch packages imported by
 Add the travis configuration to git:
 
 ``` text
-$ git add .travis.yml
-
-$ git commit -m "travis configuration"
-[master 3329dc4] travis configuration
- 1 file changed, 8 insertions(+)
- create mode 100644 .travis.yml
+git add .travis.yml
+git commit -m "travis configuration"
 ```
 
 ## Activate Travis
@@ -334,33 +305,9 @@ Silly example for a blog post
 Commit and push the changes:
 
 ```
-$ git add README.md
-
-$ git commit -m "Travis status badge"
-[master 6865b70] Travis status badge
- 1 file changed, 2 insertions(+)
-
-$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ RSA 2048]----+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+-----------------+
-
-Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 381 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   3329dc4..6865b70  master -> master
+git add README.md
+git commit -m "Travis status badge"
+git push
 ```
 
 Now when you look at the project's Github page, you will see a status badge
@@ -455,33 +402,9 @@ Silly example for a blog post
 Commit and push the changes:
 
 ``` text
-$ git add README.md
-
-$ git commit -m "Drone status badge"
-[master 849ee55] Drone status badge
- 1 file changed, 1 insertion(+)
-
-$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ RSA 2048]----+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+-----------------+
-
-Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 414 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   6865b70..849ee55  master -> master
+git add README.md
+git commit -m "Drone status badge"
+git push
 ```
 
 The Drone status badge is now visible on Github!
@@ -606,33 +529,9 @@ Silly example for a blog post
 Commit and push the changes:
 
 ``` text
-$ git add README.md
-
-$ git commit -m "Coveralls status badge"
-[master 5998b08] Coveralls status badge
- 1 file changed, 1 insertion(+)
-
-$ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ RSA 2048]----+
-|        .        |
-|       + .       |
-|      . B .      |
-|     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
-|       . . o     |
-|        . .      |
-+-----------------+
-
-Counting objects: 5, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 391 bytes, done.
-Total 3 (delta 2), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
-   849ee55..5998b08  master -> master
+git add README.md
+git commit -m "Coveralls status badge"
+git push
 ```
 
 The coverage badge is now visible on Github!
