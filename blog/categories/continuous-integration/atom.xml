@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous Integration | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/continuous-integration/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:21:11-07:00</updated>
+  <updated>2013-08-30T20:28:50-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -19,11 +19,10 @@
     <updated>2013-08-30T12:50:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
     <content type="html"><![CDATA[<p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
-pipeline has become an increasingly standard practice at modern software
-companies.</p>
+(CI) pipeline is a good practice at for software projects.</p>
 
-<p>Let&rsquo;s look at how to set up a ci pipeline for open source software written in
-<a href="http://golang.org">go</a>.  All the services we will use are free (like beer)
+<p>Let&rsquo;s look at how to set up a CI pipeline for open source software written in
+<a href="http://golang.org">go</a>.  All the services mentioned here are free (like beer)
 when used for free (like freedom) software projects.</p>
 
 <h1>Create project</h1>
