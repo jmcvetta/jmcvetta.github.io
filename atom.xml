@@ -4,7 +4,7 @@
   <title><![CDATA[Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T19:23:26-07:00</updated>
+  <updated>2013-08-30T19:26:47-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[continuous integration for go code]]></title>
+    <title type="html"><![CDATA[Continuous Integration for Go code]]></title>
     <link href="http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/"/>
     <updated>2013-08-30T12:50:00-07:00</updated>
     <id>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code</id>
