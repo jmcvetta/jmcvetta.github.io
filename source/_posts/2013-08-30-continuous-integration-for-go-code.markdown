@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "continuous integration for go code"
+title: "Continuous Integration for Go code"
 date: 2013-08-30 12:50
 comments: true
 categories:
