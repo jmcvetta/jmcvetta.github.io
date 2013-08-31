@@ -1,54 +1,54 @@
 ---
 layout: post
-title: "Continuous Integration for Go code"
+title: "continuous integration for go code"
 date: 2013-08-30 12:50
 comments: true
 categories:
 published: false
 ---
 
-Using a [continuous integration](http://en.wikipedia.org/wiki/Continuous_integration)
+Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
 pipeline has become an increasingly standard practice at modern software
 companies.
 
-Let's look at how to set up a CI pipeline for open source software written in
-[Go](http://golang.org).  All the services we will use are free (like beer)
-when used for Free (like freedom) Software projects.
+Let's look at how to set up a ci pipeline for open source software written in
+[go](http://golang.org).  All the services we will use are free (like beer)
+when used for free (like freedom) software projects.
 
 
 # Create a new project on Github
 
-Start by creating a [new repository on Github](https://github.com/new), naming
+Start by creating a [new repository on github](https://github.com/new), naming
 it `foofinder`.  Now clone the repo to your local machine:
 
 ``` text
 $ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
-Cloning into 'foofinder'...
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ RSA 2048]----+
+cloning into 'foofinder'...
+host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ rsa 2048]----+
 |        .        |
 |       + .       |
-|      . B .      |
+|      . b .      |
 |     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
+|    x * s        |
+|   + o o . .     |
+|    .   e . o    |
 |       . . o     |
 |        . .      |
 +-----------------+
 
-remote: Counting objects: 8, done.
-remote: Compressing objects: 100% (7/7), done.
-remote: Total 8 (delta 2), reused 4 (delta 1)
-Receiving objects: 100% (8/8), 12.87 KiB, done.
-Resolving deltas: 100% (2/2), done.
+remote: counting objects: 8, done.
+remote: compressing objects: 100% (7/7), done.
+remote: total 8 (delta 2), reused 4 (delta 1)
+receiving objects: 100% (8/8), 12.87 kib, done.
+resolving deltas: 100% (2/2), done.
 
 $ cd foofinder/
 ```
 
 Create a file `foofinder.go` with the following content:
 
-## Write some code
+## write some code
 
 ``` go
 package foofinder
@@ -68,9 +68,9 @@ func IsItFoo(word string) (bool, error) {
 ```
 
 
-## Write a test
+## write a test
 
-Create a file `foofinder_test.go` with this content:
+create a file `foofinder_test.go` with this content:
 
 ``` go
 package foofinder
@@ -94,15 +94,15 @@ Now let's run our test and see if it worked:
 
 ``` text
 $ go test -v
-=== RUN TestIsItFoo
---- PASS: TestIsItFoo (0.00 seconds)
-PASS
+=== run TestIsItFoo
+--- pass: TestIsItFoo (0.00 seconds)
+pass
 ok  	github.com/jmcvetta/foofinder	0.009s
 ```
 
-## Test coverage
+## Test Coverage
 
-We can use [`gocov`](http://github.com/axw/gocov) to ananlyse how much of our
+We can use [`gocov`](http://github.com/axw/gocov) to ananlyze how much of our
 codebase is covered by tests.
 
 Install `gocov`:
@@ -116,56 +116,56 @@ github.com/axw/gocov/gocov
 
 
 ``` text
-$ gocov test | python -mjson.tool  # Use mjson.tool to pretty print JSON output
+$ gocov test | python -mjson.tool  # use mjson.tool to pretty print JSON output
 ok  	github.com/jmcvetta/foofinder	0.010s
 {
-    "Packages": [
+    "packages": [
         {
-            "Functions": [
+            "functions": [
                 {
-                    "End": 462,
-                    "Entered": 0,
-                    "File": "/home/jason/work/go/src/github.com/jmcvetta/foofinder/foofinder.go",
-                    "Left": 0,
-                    "Name": "IsItFoo",
-                    "Start": 272,
-                    "Statements": [
+                    "end": 462,
+                    "entered": 0,
+                    "file": "/home/jason/work/go/src/github.com/jmcvetta/foofinder/foofinder.go",
+                    "left": 0,
+                    "name": "isitfoo",
+                    "start": 272,
+                    "statements": [
                         {
-                            "End": 441,
-                            "Reached": 1,
-                            "Start": 315
+                            "end": 441,
+                            "reached": 1,
+                            "start": 315
                         },
                         {
-                            "End": 360,
-                            "Reached": 1,
-                            "Start": 344
+                            "end": 360,
+                            "reached": 1,
+                            "start": 344
                         },
                         {
-                            "End": 418,
-                            "Reached": 0,
-                            "Start": 376
+                            "end": 418,
+                            "reached": 0,
+                            "start": 376
                         },
                         {
-                            "End": 438,
-                            "Reached": 0,
-                            "Start": 421
+                            "end": 438,
+                            "reached": 0,
+                            "start": 421
                         },
                         {
-                            "End": 460,
-                            "Reached": 0,
-                            "Start": 443
+                            "end": 460,
+                            "reached": 0,
+                            "start": 443
                         }
                     ]
                 }
             ],
-            "Name": "github.com/jmcvetta/foofinder"
+            "name": "github.com/jmcvetta/foofinder"
         }
     ]
 }
 
 ```
 
-The other `gocov` commands are used to interpret the JSON output.  `gocov
+The other `gocov` commands are used to interpret the json output.  `gocov
 report` produces a human-readable summary:
 
 ``` bash
@@ -188,10 +188,10 @@ ok  	github.com/jmcvetta/foofinder	0.011s
 11     		case "foo":
 12     			return true, nil
 13     		case "bar":
-14 MISS			err := errors.New("Oh noooooo, it's bar!")
-15 MISS			return false, err
+14 miss			err := errors.New("oh noooooo, it's bar!")
+15 miss			return false, err
 16     		}
-17 MISS		return false, nil
+17 miss		return false, nil
 18     	}
 ```
 
@@ -215,9 +215,12 @@ $ git commit -m "trivial program"
 
 Travis CI is the most popular hosted continuous integration service for open
 source projects.  It is tightly integrated with Github.  Travis results are
-automatically displayed for Pull Requests, helping to ensure you never accept a
-PR that fails its tests.  However it has some limitations for testing Go code
-- in particular, `gocov` cannot currently be used with Travis.
+automatically displayed for pull requests, helping to ensure you never accept a
+PR that fails its tests.
+
+Travis itself is open source, and free for use by open source projects.
+However it has some limitations for testing go code - in particular,
+`gocov` cannot currently be used with Travis.
 
 Travis reads its configuration from a file in the repository root.  Create a
 `.travis.yml` file with this content:
@@ -233,13 +236,17 @@ before_script:
 - go get github.com/bmizerany/assert
 ```
 
-Add the Travis configuration to Git:
+The `before_script` section is required because our tests depend on `assert`,
+but the `go get` command will not automatically fetch packages imported by
+`*_test.go` files.
+
+Add the travis configuration to git:
 
 ``` text
 $ git add .travis.yml
 
-$ git commit -m "Travis configuration"
-[master 3329dc4] Travis configuration
+$ git commit -m "travis configuration"
+[master 3329dc4] travis configuration
  1 file changed, 8 insertions(+)
  create mode 100644 .travis.yml
 ```
@@ -247,60 +254,123 @@ $ git commit -m "Travis configuration"
 ## Activate Travis
 
 Open https://travis-ci.org in your browser.  Click on "Sign in with Github", in
-the upper right corner of the screen.  If you have never logged in to Travis
+the upper right corner of the screen.  If you have never logged in to travis
 before you will be prompted by Github to grant OAuth permissions to Travis.
 
-{% img images/travis-signin.png Travis Sign-In %}
+{% img images/travis-signin.png travis sign-in %}
 
 Once you are logged in, click on your username in the upper right corner, and
 choose "Accounts" from the dropdown.
 
-{% img images/travis-accounts.png Travis Accounts %}
+{% img images/travis-accounts.png travis accounts %}
 
-Travis will display a list of all your
-Github repositories.  Locate `foofinder`, and click the OFF/ON toggle beside
-it.  The toggle will slide to "ON".
+Travis will display a list of all your Github repositories.  locate `foofinder`,
+and click the OFF/ON toggle beside it.  The toggle will slide to "ON".
 
-{% img images/travis-repos.png Travis Repositories %}
+{% img images/travis-repos.png travis repositories %}
 
 Now we push our commits to Github, which will automatically kick off a
 Travis build:
 
 ``` text
 $ git push
-Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-+--[ RSA 2048]----+
+host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
++--[ rsa 2048]----+
 |        .        |
 |       + .       |
-|      . B .      |
+|      . b .      |
 |     o * +       |
-|    X * S        |
-|   + O o . .     |
-|    .   E . o    |
+|    x * s        |
+|   + o o . .     |
+|    .   e . o    |
 |       . . o     |
 |        . .      |
 +-----------------+
 
-Counting objects: 4, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 413 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@github.com:jmcvetta/foofinder.git
+counting objects: 4, done.
+delta compression using up to 4 threads.
+compressing objects: 100% (3/3), done.
+writing objects: 100% (3/3), 413 bytes, done.
+total 3 (delta 1), reused 0 (delta 0)
+to git@github.com:jmcvetta/foofinder.git
    80f9eb6..3329dc4  master -> master
 ```
 
 In your browser, click on the Travis logo in the upper left corner of the
-screen to return to the Travis home page.  You should now see `foofinder` in
-the "My Repositories" sidebar at the left of the screen.  Click on it to see
+screen to return to the travis home page.  You should now see `foofinder` in
+the "my repositories" sidebar at the left of the screen.  Click on it to see
 the results of your test run.
 
-{% img images/travis-build.png Travis Build Results %}
+{% img images/travis-build.png travis build results %}
 
 
 # Drone.io
 
+[Drone](http://drone.io) is a hosted continuous integration service, in some
+ways similar to Travis CI.  Drone provides a more "vanilla"  build
+environment than Travis, that works great with `gocov` and friends.  Although
+Drone itself is proprietary, it is free for use by open source projects.  The
+backend of drone is written in go.
+
+Unlike Travis, Drone does not require a configuration file in the repository.
+Instead it is configured through its web interface.
+
+Start by opening http://drone.io in your browser.  Click "Login" in the upper
+right of the screen.
+
+{% img images/drone-login.png Login to Drone %}
+
+On the login page, choose Github from the list of third-party login providers.
+If you have never logged in to Drone before, Github will prompt you to grant
+OAuth permissions.
+
+{% img images/drone-login-provider.png Drone Login Providers %}
+
+Once you are logged in, click on the "New Project" link at the top of the page.
+
+{% img images/drone-new-project.png New Project %}
+
+On the repository setup page, select Github.
+
+{% img images/drone-repo-setup.png Repository Setup %}
+
+Locate `foofinder` in the list of your repositories, and click "Select".
+
+{% img images/drone-select-repo.png Select Repository %}
+
+Choose Go from the project setup menu.
+
+{% img images/drone-golang.png Setup Go project %}
+
+You will be taken to the build script screen.
+
+It is necessary to `go get` the `assert` package required by our tests.  Replace
+the default build script with this:
+
+``` text
+go get
+go build
+go get github.com/bmizerany/assert
+go test -v
+```
+
+{% img images/drone-setup-initial.png Initial Drone build script %}
+
+Click "Save" and you will be taken to the Settings screen.  No changes need
+to be made here.
+
+{% img images/drone-settings-initial.png Initial Drone settings page %}
+
+Click "Build Now" to kick off the first build!  Every time a new commit is
+pushed to Github, Drone will automatically start a build.  If everything is
+setup correctly your build will complete successfully.
+
+{% img images/drone-build-success.png First Drone build was successful %}
+
+
 
 # Coveralls.io
 
-## Add `goveralls` to Drone config.
+## Configure Coveralls
+
+## Add `goveralls` to Drone config
