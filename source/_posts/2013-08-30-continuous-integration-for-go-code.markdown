@@ -373,6 +373,38 @@ setup correctly your build will complete successfully.
 
 # Coveralls.io
 
+[Coveralls](http://coveralls.io) is a hosted code coverage analysis tool.  It is
+free for use by open source projects.
+
+
 ## Configure Coveralls
+
+Start by opening http://coveralls.io in your browser.  Click "SIGN IN WITH
+GITHUB" in the upper right corner.  If you have never logged in to Coveralls
+before, Github will prompt you to grant OAuth permissions to Coveralls.
+
+{% img images/coveralls-home.png Coveralls Sign In %}
+
+Once you are logged in, click on "Add Repo".
+
+{% img images/coveralls-signed-in.png Click on Add Repo %}
+
+Coveralls does not automatically refresh its list of your Github repositories.
+You will need to manually sync it whenever you add a new repo on Github.  Click
+"SYNC GITHUB REPOS".  The operation may take several seconds.
+
+{% img images/coveralls-sync.png Sync Repos %}
+
+Locate `foofinder` in the list of repositories, and click the OFF/ON toggle.  It
+will slide over to ON, and a "VIEW ON COVERALLS" button will appear.  Sometimes
+it may be necessary to refresh the page to see the button.
+
+{% img images/coveralls-toggle.png Toggle Coveralls for the project %}
+
+Click "VIEW ON COVERALLS" and you will be taken to the setup page.  Locate the
+REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.
+
+{% img images/coveralls-tech-details.png Locate the Repo Token %}
+
 
 ## Add `goveralls` to Drone config
