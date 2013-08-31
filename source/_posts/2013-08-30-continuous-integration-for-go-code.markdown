@@ -7,7 +7,9 @@ categories: [Go, Continuous Integration]
 ---
 
 Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
-(CI) pipeline is a good practice at for software projects.
+(CI) pipeline is a good practice for any software project.  CI lets a developer
+know immediately if they commit changes that break any unit tests, or decrease
+test coverage.
 
 Let's look at how to set up a CI pipeline for open source software written in
 [go](http://golang.org).  All the services mentioned here are free (like beer)
