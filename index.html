@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Legion of Free Hackers</title>
+  <meta name="author" content="Jason McVetta">
+
+  
+  <meta name="description" content="Using a continuous integration
+pipeline has become an increasingly standard practice at modern software
+companies. Let&rsquo;s look at how to set up &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmcvetta.github.io">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Legion of Free Hackers" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Legion of Free Hackers</a></h1>
+  
+    <h2>Free Software, Golang programming, &c</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmcvetta.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/30/continuous-integration-for-go-code/">Continuous Integration for Go Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-30T12:50:00-07:00" pubdate data-updated="true">Aug 30<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Using a <a href="http://en.wikipedia.org/wiki/continuous_integration">continuous integration</a>
+pipeline has become an increasingly standard practice at modern software
+companies.</p>
+
+<p>Let&rsquo;s look at how to set up a ci pipeline for open source software written in
+<a href="http://golang.org">go</a>.  All the services we will use are free (like beer)
+when used for free (like freedom) software projects.</p>
+
+<h1>Create a new project on Github</h1>
+
+<p>Start by creating a <a href="https://github.com/new">new repository on github</a>, naming
+it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git clone git@github.com:jmcvetta/foofinder.git # substitute your username
+</span><span class='line'>cloning into &#39;foofinder&#39;...
+</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+</span><span class='line'>+--[ rsa 2048]----+
+</span><span class='line'>|        .        |
+</span><span class='line'>|       + .       |
+</span><span class='line'>|      . b .      |
+</span><span class='line'>|     o * +       |
+</span><span class='line'>|    x * s        |
+</span><span class='line'>|   + o o . .     |
+</span><span class='line'>|    .   e . o    |
+</span><span class='line'>|       . . o     |
+</span><span class='line'>|        . .      |
+</span><span class='line'>+-----------------+
+</span><span class='line'>
+</span><span class='line'>remote: counting objects: 8, done.
+</span><span class='line'>remote: compressing objects: 100% (7/7), done.
+</span><span class='line'>remote: total 8 (delta 2), reused 4 (delta 1)
+</span><span class='line'>receiving objects: 100% (8/8), 12.87 kib, done.
+</span><span class='line'>resolving deltas: 100% (2/2), done.
+</span><span class='line'>
+</span><span class='line'>$ cd foofinder/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create a file <code>foofinder.go</code> with the following content:</p>
+
+<h2>Write some code</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">foofinder</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;errors&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">IsItFoo</span><span class="p">(</span><span class="nx">word</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">switch</span> <span class="nx">word</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="s">&quot;foo&quot;</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">nil</span>
+</span><span class='line'>  <span class="k">case</span> <span class="s">&quot;bar&quot;</span><span class="p">:</span>
+</span><span class='line'>      <span class="nx">err</span> <span class="o">:=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;Oh noooooo, it&#39;s bar!&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">err</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Write a test</h2>
+
+<p>Create a file <code>foofinder_test.go</code> with this content:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">foofinder</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s">&quot;github.com/bmizerany/assert&quot;</span>
+</span><span class='line'>  <span class="s">&quot;testing&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">TestIsItFoo</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">word</span> <span class="o">:=</span> <span class="s">&quot;foo&quot;</span>
+</span><span class='line'>  <span class="nx">foo</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">IsItFoo</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">t</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">foo</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&rsquo;s run our test and see if it worked:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ go test -v
+</span><span class='line'>=== run TestIsItFoo
+</span><span class='line'>--- pass: TestIsItFoo (0.00 seconds)
+</span><span class='line'>pass
+</span><span class='line'>ok    github.com/jmcvetta/foofinder   0.009s
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Test Coverage</h2>
+
+<p>We can use <a href="http://github.com/axw/gocov"><code>gocov</code></a> to ananlyze how much of our
+codebase is covered by tests.</p>
+
+<p>Install <code>gocov</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ go get -v github.com/axw/gocov/gocov
+</span><span class='line'>github.com/axw/gocov/gocov
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>gocov</code> has several commands.   <code>gocov test</code> produces JSON output:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ gocov test | python -mjson.tool  # use mjson.tool to pretty print JSON output
+</span><span class='line'>ok    github.com/jmcvetta/foofinder   0.010s
+</span><span class='line'>{
+</span><span class='line'>    &quot;packages&quot;: [
+</span><span class='line'>        {
+</span><span class='line'>            &quot;functions&quot;: [
+</span><span class='line'>                {
+</span><span class='line'>                    &quot;end&quot;: 462,
+</span><span class='line'>                    &quot;entered&quot;: 0,
+</span><span class='line'>                    &quot;file&quot;: &quot;/home/jason/work/go/src/github.com/jmcvetta/foofinder/foofinder.go&quot;,
+</span><span class='line'>                    &quot;left&quot;: 0,
+</span><span class='line'>                    &quot;name&quot;: &quot;isitfoo&quot;,
+</span><span class='line'>                    &quot;start&quot;: 272,
+</span><span class='line'>                    &quot;statements&quot;: [
+</span><span class='line'>                        {
+</span><span class='line'>                            &quot;end&quot;: 441,
+</span><span class='line'>                            &quot;reached&quot;: 1,
+</span><span class='line'>                            &quot;start&quot;: 315
+</span><span class='line'>                        },
+</span><span class='line'>                        {
+</span><span class='line'>                            &quot;end&quot;: 360,
+</span><span class='line'>                            &quot;reached&quot;: 1,
+</span><span class='line'>                            &quot;start&quot;: 344
+</span><span class='line'>                        },
+</span><span class='line'>                        {
+</span><span class='line'>                            &quot;end&quot;: 418,
+</span><span class='line'>                            &quot;reached&quot;: 0,
+</span><span class='line'>                            &quot;start&quot;: 376
+</span><span class='line'>                        },
+</span><span class='line'>                        {
+</span><span class='line'>                            &quot;end&quot;: 438,
+</span><span class='line'>                            &quot;reached&quot;: 0,
+</span><span class='line'>                            &quot;start&quot;: 421
+</span><span class='line'>                        },
+</span><span class='line'>                        {
+</span><span class='line'>                            &quot;end&quot;: 460,
+</span><span class='line'>                            &quot;reached&quot;: 0,
+</span><span class='line'>                            &quot;start&quot;: 443
+</span><span class='line'>                        }
+</span><span class='line'>                    ]
+</span><span class='line'>                }
+</span><span class='line'>            ],
+</span><span class='line'>            &quot;name&quot;: &quot;github.com/jmcvetta/foofinder&quot;
+</span><span class='line'>        }
+</span><span class='line'>    ]
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The other <code>gocov</code> commands are used to interpret the json output.  <code>gocov
+report</code> produces a human-readable summary:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gocov <span class="nb">test</span> | gocov report
+</span><span class='line'>ok    github.com/jmcvetta/foofinder   0.011s
+</span><span class='line'>
+</span><span class='line'>github.com/jmcvetta/foofinder/foofinder.go     IsItFoo 40.00% <span class="o">(</span>2/5<span class="o">)</span>
+</span><span class='line'>github.com/jmcvetta/foofinder          ------- 40.00% <span class="o">(</span>2/5<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For a more detailed look at your code&rsquo;s coverage, use <code>gocov annotate</code>.  Note
+the trailing <code>-</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gocov <span class="nb">test</span> | gocov annotate -
+</span><span class='line'>ok    github.com/jmcvetta/foofinder   0.011s
+</span><span class='line'>
+</span><span class='line'> 9        func IsItFoo<span class="o">(</span>word string<span class="o">)</span> <span class="o">(</span>bool, error<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>10            switch word <span class="o">{</span>
+</span><span class='line'>11            <span class="k">case</span> <span class="s2">&quot;foo&quot;</span>:
+</span><span class='line'>12                <span class="k">return </span><span class="nb">true</span>, nil
+</span><span class='line'>13            <span class="k">case</span> <span class="s2">&quot;bar&quot;</span>:
+</span><span class='line'>14 miss           err :<span class="o">=</span> errors.New<span class="o">(</span><span class="s2">&quot;oh noooooo, it&#39;s bar!&quot;</span><span class="o">)</span>
+</span><span class='line'>15 miss           <span class="k">return </span><span class="nb">false</span>, err
+</span><span class='line'>16            <span class="o">}</span>
+</span><span class='line'>17 miss       <span class="k">return </span><span class="nb">false</span>, nil
+</span><span class='line'>18        <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Commit to Github</h2>
+
+<p>Now we will commit our new files to the git repository:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add foofinder.go foofinder_test.go
+</span><span class='line'>
+</span><span class='line'>$ git commit -m &quot;trivial program&quot;
+</span><span class='line'>[master a09f2ab] trivial program
+</span><span class='line'> 2 files changed, 37 insertions(+)
+</span><span class='line'> create mode 100644 foofinder.go
+</span><span class='line'> create mode 100644 foofinder_test.go
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Travis CI</h1>
+
+<p>Travis CI is the most popular hosted continuous integration service for open
+source projects.  It is tightly integrated with Github.  Travis results are
+automatically displayed for pull requests, helping to ensure you never accept a
+PR that fails its tests.</p>
+
+<p>Travis itself is open source, and free for use by open source projects.
+However it has some limitations for testing go code &ndash; in particular,
+<code>gocov</code> cannot currently be used with Travis.</p>
+
+<h2>Travis Configuration</h2>
+
+<p>Travis reads its configuration from a file in the repository root.  Create a
+<code>.travis.yml</code> file with this content:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">go</span>
+</span><span class='line'><span class="l-Scalar-Plain">notificaitons</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">recipients</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">your.email@host.com</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">on_success</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">change</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">on_failure</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">always</span>
+</span><span class='line'><span class="l-Scalar-Plain">before_script</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">go get github.com/bmizerany/assert</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>before_script</code> section is required because our tests depend on <code>assert</code>,
+but the <code>go get</code> command will not automatically fetch packages imported by
+<code>*_test.go</code> files.</p>
+
+<p>Add the travis configuration to git:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add .travis.yml
+</span><span class='line'>
+</span><span class='line'>$ git commit -m &quot;travis configuration&quot;
+</span><span class='line'>[master 3329dc4] travis configuration
+</span><span class='line'> 1 file changed, 8 insertions(+)
+</span><span class='line'> create mode 100644 .travis.yml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Activate Travis</h2>
+
+<p>Open <a href="https://travis-ci.org">https://travis-ci.org</a> in your browser.  Click on &ldquo;Sign in with Github&rdquo;, in
+the upper right corner of the screen.  If you have never logged in to travis
+before you will be prompted by Github to grant OAuth permissions to Travis.</p>
+
+<p><img src="images/go_ci/travis-signin.png" title="travis sign-in" ></p>
+
+<p>Once you are logged in, click on your username in the upper right corner, and
+choose &ldquo;Accounts&rdquo; from the dropdown.</p>
+
+<p><img src="images/go_ci/travis-accounts.png" title="travis accounts" ></p>
+
+<p>Travis will display a list of all your Github repositories.  locate <code>foofinder</code>,
+and click the OFF/ON toggle beside it.  The toggle will slide to &ldquo;ON&rdquo;.</p>
+
+<p><img src="images/go_ci/travis-repos.png" title="travis repositories" ></p>
+
+<p>Now we push our commits to Github, which will automatically kick off a
+Travis build:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git push
+</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+</span><span class='line'>+--[ rsa 2048]----+
+</span><span class='line'>|        .        |
+</span><span class='line'>|       + .       |
+</span><span class='line'>|      . b .      |
+</span><span class='line'>|     o * +       |
+</span><span class='line'>|    x * s        |
+</span><span class='line'>|   + o o . .     |
+</span><span class='line'>|    .   e . o    |
+</span><span class='line'>|       . . o     |
+</span><span class='line'>|        . .      |
+</span><span class='line'>+-----------------+
+</span><span class='line'>
+</span><span class='line'>counting objects: 4, done.
+</span><span class='line'>delta compression using up to 4 threads.
+</span><span class='line'>compressing objects: 100% (3/3), done.
+</span><span class='line'>writing objects: 100% (3/3), 413 bytes, done.
+</span><span class='line'>total 3 (delta 1), reused 0 (delta 0)
+</span><span class='line'>to git@github.com:jmcvetta/foofinder.git
+</span><span class='line'>   80f9eb6..3329dc4  master -&gt; master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In your browser, click on the Travis logo in the upper left corner of the
+screen to return to the travis home page.  You should now see <code>foofinder</code> in
+the &ldquo;my repositories&rdquo; sidebar at the left of the screen.  Click on it to see
+the results of your test run.</p>
+
+<p><img src="images/go_ci/travis-build.png" title="travis build results" ></p>
+
+<h2>Status badge</h2>
+
+<p>After all this work comes the reward:  a nice, shiny green status badge!</p>
+
+<p>Click on the gear icon and choose &ldquo;Status Images&rdquo;:</p>
+
+<p><img src="images/go_ci/travis-status-images-link.png"></p>
+
+<p>Copy the Markdown link from the ensuing dialog.</p>
+
+<p><img src="images/go_ci/travis-status-images.png"></p>
+
+<p>Paste the Markdown into the <code>README.md</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>foofinder
+</span><span class='line'>=========
+</span><span class='line'>
+</span><span class='line'>Silly example for a blog post
+</span><span class='line'>
+</span><span class='line'>[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Commit and push the changes:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
+</span><span class='line'>
+</span><span class='line'>$ git commit -m &quot;Travis status badge&quot;
+</span><span class='line'>[master 6865b70] Travis status badge
+</span><span class='line'> 1 file changed, 2 insertions(+)
+</span><span class='line'>
+</span><span class='line'>$ git push
+</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+</span><span class='line'>+--[ RSA 2048]----+
+</span><span class='line'>|        .        |
+</span><span class='line'>|       + .       |
+</span><span class='line'>|      . B .      |
+</span><span class='line'>|     o * +       |
+</span><span class='line'>|    X * S        |
+</span><span class='line'>|   + O o . .     |
+</span><span class='line'>|    .   E . o    |
+</span><span class='line'>|       . . o     |
+</span><span class='line'>|        . .      |
+</span><span class='line'>+-----------------+
+</span><span class='line'>
+</span><span class='line'>Counting objects: 5, done.
+</span><span class='line'>Delta compression using up to 4 threads.
+</span><span class='line'>Compressing objects: 100% (3/3), done.
+</span><span class='line'>Writing objects: 100% (3/3), 381 bytes, done.
+</span><span class='line'>Total 3 (delta 1), reused 0 (delta 0)
+</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
+</span><span class='line'>   3329dc4..6865b70  master -&gt; master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now when you look at the project&rsquo;s Github page, you will see a status badge
+that is automatically updated whenever a new build is run on Travis.</p>
+
+<p><img src="images/go_ci/travis-status-badge.png" title="Travis badge on Github" ></p>
+
+<h1>Drone.io</h1>
+
+<p><a href="http://drone.io">Drone</a> is a hosted continuous integration service, in some
+ways similar to Travis CI.  Drone provides a more &ldquo;vanilla&rdquo;  build
+environment than Travis, that works great with <code>gocov</code> and friends.  Although
+Drone itself is proprietary, it is free for use by open source projects.  The
+backend of drone is written in go.</p>
+
+<p>Unlike Travis, Drone does not require a configuration file in the repository.
+Instead it is configured through its web interface.</p>
+
+<p>Start by opening <a href="http://drone.io">http://drone.io</a> in your browser.  Click &ldquo;Login&rdquo; in the upper
+right of the screen.</p>
+
+<p><img src="images/go_ci/drone-login.png" title="Login to Drone" ></p>
+
+<p>On the login page, choose Github from the list of third-party login providers.
+If you have never logged in to Drone before, Github will prompt you to grant
+OAuth permissions.</p>
+
+<p><img src="images/go_ci/drone-login-provider.png" title="Drone Login Providers" ></p>
+
+<p>Once you are logged in, click on the &ldquo;New Project&rdquo; link at the top of the page.</p>
+
+<p><img src="images/go_ci/drone-new-project.png" title="New Project" ></p>
+
+<p>On the repository setup page, select Github.</p>
+
+<p><img src="images/go_ci/drone-repo-setup.png" title="Repository Setup" ></p>
+
+<p>Locate <code>foofinder</code> in the list of your repositories, and click &ldquo;Select&rdquo;.</p>
+
+<p><img src="images/go_ci/drone-select-repo.png" title="Select Repository" ></p>
+
+<p>Choose Go from the project setup menu.</p>
+
+<p><img src="images/go_ci/drone-golang.png" title="Setup Go project" ></p>
+
+<p>You will be taken to the build script screen.</p>
+
+<p>It is necessary to <code>go get</code> the <code>assert</code> package required by our tests.  Replace
+the default build script with this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>go get
+</span><span class='line'>go build
+</span><span class='line'>go get github.com/bmizerany/assert
+</span><span class='line'>go test -v
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="images/go_ci/drone-setup-initial.png" title="Initial Drone build script" ></p>
+
+<p>Click &ldquo;Save&rdquo; and you will be taken to the Settings screen.  No changes need
+to be made here.</p>
+
+<p><img src="images/go_ci/drone-settings-initial.png" title="Initial Drone settings page" ></p>
+
+<p>Click &ldquo;Build Now&rdquo; to kick off the first build!  Every time a new commit is
+pushed to Github, Drone will automatically start a build.  If everything is
+setup correctly your build will complete successfully.</p>
+
+<p><img src="images/go_ci/drone-build-success.png" title="First Drone build was successful" ></p>
+
+<h2>Status badge</h2>
+
+<p>In your Drone project settings, click on &ldquo;Status Badges&rdquo;.</p>
+
+<p><img src="images/go_ci/drone-status-markdown.png" title="Markdown for status badge" ></p>
+
+<p>Copy the Markdown, and paste it into your <code>README.md</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>foofinder
+</span><span class='line'>=========
+</span><span class='line'>
+</span><span class='line'>Silly example for a blog post
+</span><span class='line'>
+</span><span class='line'>[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+</span><span class='line'>[![Build Status](https://drone.io/github.com/jmcvetta/foofinder/status.png)](https://drone.io/github.com/jmcvetta/foofinder/latest)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Commit and push the changes:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
+</span><span class='line'>
+</span><span class='line'>$ git commit -m &quot;Drone status badge&quot;
+</span><span class='line'>[master 849ee55] Drone status badge
+</span><span class='line'> 1 file changed, 1 insertion(+)
+</span><span class='line'>
+</span><span class='line'>$ git push
+</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+</span><span class='line'>+--[ RSA 2048]----+
+</span><span class='line'>|        .        |
+</span><span class='line'>|       + .       |
+</span><span class='line'>|      . B .      |
+</span><span class='line'>|     o * +       |
+</span><span class='line'>|    X * S        |
+</span><span class='line'>|   + O o . .     |
+</span><span class='line'>|    .   E . o    |
+</span><span class='line'>|       . . o     |
+</span><span class='line'>|        . .      |
+</span><span class='line'>+-----------------+
+</span><span class='line'>
+</span><span class='line'>Counting objects: 5, done.
+</span><span class='line'>Delta compression using up to 4 threads.
+</span><span class='line'>Compressing objects: 100% (3/3), done.
+</span><span class='line'>Writing objects: 100% (3/3), 414 bytes, done.
+</span><span class='line'>Total 3 (delta 1), reused 0 (delta 0)
+</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
+</span><span class='line'>   6865b70..849ee55  master -&gt; master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Drone status badge is now visible on Github!</p>
+
+<p><img src="images/go_ci/drone-status-badge.png" title="Drone status badge" ></p>
+
+<h1>Coveralls.io</h1>
+
+<p><a href="http://coveralls.io">Coveralls</a> is a hosted code coverage analysis tool.  It is
+free for use by open source projects.</p>
+
+<h2>Configure Coveralls</h2>
+
+<p>Start by opening <a href="http://coveralls.io">http://coveralls.io</a> in your browser.  Click &ldquo;SIGN IN WITH
+GITHUB&rdquo; in the upper right corner.  If you have never logged in to Coveralls
+before, Github will prompt you to grant OAuth permissions to Coveralls.</p>
+
+<p><img src="images/go_ci/coveralls-home.png" title="Coveralls Sign In" ></p>
+
+<p>Once you are logged in, click on &ldquo;Add Repo&rdquo;.</p>
+
+<p><img src="images/go_ci/coveralls-signed-in.png" title="Click on Add Repo" ></p>
+
+<p>Coveralls does not automatically refresh its list of your Github repositories.
+You will need to manually sync it whenever you add a new repo on Github.  Click
+&ldquo;SYNC GITHUB REPOS&rdquo;.  The operation may take several seconds.</p>
+
+<p><img src="images/go_ci/coveralls-sync.png" title="Sync Repos" ></p>
+
+<p>Locate <code>foofinder</code> in the list of repositories, and click the OFF/ON toggle.  It
+will slide over to ON, and a &ldquo;VIEW ON COVERALLS&rdquo; button will appear.  Sometimes
+it may be necessary to refresh the page to see the button.</p>
+
+<p><img src="images/go_ci/coveralls-toggle.png" title="Toggle Coveralls for the project" ></p>
+
+<p>Click &ldquo;VIEW ON COVERALLS&rdquo; and you will be taken to the setup page.  Locate the
+REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.</p>
+
+<p><img src="images/go_ci/coveralls-tech-details.png" title="Locate the Repo Token" ></p>
+
+<h2>Add <code>goveralls</code> to Drone config</h2>
+
+<p>Now we need to push some test coverage data to Coveralls.  We will do this by
+adding <code>goveralls</code>, a Coveralls client for Go code, to our Drone build script.
+We must use Drone because <code>goveralls</code> calls <code>gocov</code>, which is not supported on
+Travis CI.</p>
+
+<p>Return to the Drone settings for <code>foofinder</code>, and update the Commands section
+to call <code>goveralls</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>go get
+</span><span class='line'>go build
+</span><span class='line'>go get github.com/bmizerany/assert
+</span><span class='line'>go test -v
+</span><span class='line'>
+</span><span class='line'>go get -v github.com/axw/gocov/gocov
+</span><span class='line'>go get -v github.com/mattn/goveralls
+</span><span class='line'>goveralls -v -service drone.io $COVERALLS_TOKEN
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then paste your Coveralls Repo Token into the Environment Variables section
+like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>COVERALLS_TOKEN=paste_your_token_here
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note, the Environment Variables of a Drone project are not visible to the
+public, but the Commands are.</p>
+
+<p><img src="images/go_ci/drone-coveralls-settings.png" title="Configure Drone to work with Coveralls" ></p>
+
+<p>Click &ldquo;Save&rdquo;, then click &ldquo;Build Now&rdquo; to kick off a new build.  If everything
+is set up correctly, the build will display a Coveralls job link when it
+completes.</p>
+
+<p><img src="images/go_ci/drone-coveralls-success.png" title="Successful push to Coveralls" ></p>
+
+<p>Refresh your project&rsquo;s Coveralls page, and you will see code coverage data!</p>
+
+<p><img src="images/go_ci/coveralls-first-build.png" title="First build" ></p>
+
+<p>Click on the build number &ndash; in this case, &ldquo;#1&rdquo; &ndash; to explore coverage in the
+build.</p>
+
+<p><img src="images/go_ci/coveralls-build-details.png" title="Build Details" ></p>
+
+<p>By clicking on an individual file name, you can view color coded code coverage
+for that file.</p>
+
+<p><img src="images/go_ci/coveralls-file-details.png" title="Source File Details" ></p>
+
+<h2>Status Badge</h2>
+
+<p>On your project&rsquo;s Coveralls page, click the &ldquo;Get Badge URLs&rdquo; link, just below
+the color-coded &ldquo;coverage&rdquo; badge.  Copy the Markdown from the ensuing popup:</p>
+
+<p><img src="images/go_ci/coveralls-badge-markdown.png" title="Badge markdown" ></p>
+
+<p>Paste the Markdown into your <code>README.md</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>foofinder
+</span><span class='line'>=========
+</span><span class='line'>
+</span><span class='line'>Silly example for a blog post
+</span><span class='line'>
+</span><span class='line'>[![Build Status](https://travis-ci.org/jmcvetta/foofinder.png?branch=master)](https://travis-ci.org/jmcvetta/foofinder)
+</span><span class='line'>[![Build Status](https://drone.io/github.com/jmcvetta/foofinder/status.png)](https://drone.io/github.com/jmcvetta/foofinder/latest)
+</span><span class='line'>[![Coverage Status](https://coveralls.io/repos/jmcvetta/foofinder/badge.png?branch=master)](https://coveralls.io/r/jmcvetta/foofinder?branch=master)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Commit and push the changes:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>$ git add README.md
+</span><span class='line'>
+</span><span class='line'>$ git commit -m &quot;Coveralls status badge&quot;
+</span><span class='line'>[master 5998b08] Coveralls status badge
+</span><span class='line'> 1 file changed, 1 insertion(+)
+</span><span class='line'>
+</span><span class='line'>$ git push
+</span><span class='line'>Host key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+</span><span class='line'>+--[ RSA 2048]----+
+</span><span class='line'>|        .        |
+</span><span class='line'>|       + .       |
+</span><span class='line'>|      . B .      |
+</span><span class='line'>|     o * +       |
+</span><span class='line'>|    X * S        |
+</span><span class='line'>|   + O o . .     |
+</span><span class='line'>|    .   E . o    |
+</span><span class='line'>|       . . o     |
+</span><span class='line'>|        . .      |
+</span><span class='line'>+-----------------+
+</span><span class='line'>
+</span><span class='line'>Counting objects: 5, done.
+</span><span class='line'>Delta compression using up to 4 threads.
+</span><span class='line'>Compressing objects: 100% (3/3), done.
+</span><span class='line'>Writing objects: 100% (3/3), 391 bytes, done.
+</span><span class='line'>Total 3 (delta 2), reused 0 (delta 0)
+</span><span class='line'>To git@github.com:jmcvetta/foofinder.git
+</span><span class='line'>   849ee55..5998b08  master -&gt; master
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The coverage badge is now visible on Github!</p>
+
+<p><img src="images/go_ci/coveralls-badge.png" title="Coveralls status badge" ></p>
+
+<p>Uh-oh, that badge is red.  Not-so-shiny.  :(  We better get to work improving
+our test coverage!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/30/continuous-integration-for-go-code/">Continuous Integration for Go Code</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/jmcvetta">@jmcvetta</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jmcvetta',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jason McVetta -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
