@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Go | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:15:04-07:00</updated>
+  <updated>2013-08-30T20:18:18-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -37,9 +37,9 @@ cd foofinder/ # Remaining commands assume they are in the &ldquo;foofinder&rdquo
 
 <p>```</p>
 
-<p>Create a file <code>foofinder.go</code> with the following content:</p>
-
 <h2>Write some code</h2>
+
+<p>Create a file <code>foofinder.go</code> with the following content:</p>
 
 <p>``` go
 package foofinder</p>
