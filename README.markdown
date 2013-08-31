@@ -1,3 +1,4 @@
-## Octopress source for jmcvetta.github.io
+## Source for jmcvetta.github.io
 
-Check out [Octopress.org](http://octopress.org/docs) for guides and documentation.
+This is the [Octopress.org](http://octopress.org/) source for
+http://jmcvetta.github.io.
