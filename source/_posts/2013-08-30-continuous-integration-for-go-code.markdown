@@ -3,7 +3,7 @@ layout: post
 title: "Continuous Integration for Go code"
 date: 2013-08-30 12:50
 comments: true
-categories:
+categories: [Go, Continuous Integration]
 ---
 
 Using a [continuous integration](http://en.wikipedia.org/wiki/continuous_integration)
@@ -43,7 +43,9 @@ receiving objects: 100% (8/8), 12.87 kib, done.
 resolving deltas: 100% (2/2), done.
 
 $ cd foofinder/
+
 ```
+
 
 Create a file `foofinder.go` with the following content:
 
