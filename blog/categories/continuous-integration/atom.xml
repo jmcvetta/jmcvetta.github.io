@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous Integration | Legion of Free Gophers]]></title>
   <link href="http://jmcvetta.github.io/blog/categories/continuous-integration/atom.xml" rel="self"/>
   <link href="http://jmcvetta.github.io/"/>
-  <updated>2013-08-30T20:32:12-07:00</updated>
+  <updated>2013-08-30T20:38:27-07:00</updated>
   <id>http://jmcvetta.github.io/</id>
   <author>
     <name><![CDATA[Jason McVetta]]></name>
@@ -25,7 +25,7 @@ test coverage.</p>
 
 <p>Let&rsquo;s look at how to set up a CI pipeline for open source software written in
 <a href="http://golang.org">Go</a>.  All the services mentioned here are free (like beer)
-when used for free (like freedom) software projects.</p>
+when used for Free (like freedom) Software projects.</p>
 
 <h1>Create project</h1>
 
