@@ -15,7 +15,7 @@ Let's look at how to set up a ci pipeline for open source software written in
 when used for free (like freedom) software projects.
 
 
-# Create a new project on Github
+# Create project
 
 Start by creating a [new repository on github](https://github.com/new), naming
 it `foofinder`.  Now clone the repo to your local machine:
@@ -376,7 +376,7 @@ that is automatically updated whenever a new build is run on Travis.
 ways similar to Travis CI.  Drone provides a more "vanilla"  build
 environment than Travis, that works great with `gocov` and friends.  Although
 Drone itself is proprietary, it is free for use by open source projects.  The
-backend of drone is written in go.
+backend of Drone is written in Go.
 
 Unlike Travis, Drone does not require a configuration file in the repository.
 Instead it is configured through its web interface.
@@ -566,6 +566,10 @@ completes.
 
 Refresh your project's Coveralls page, and you will see code coverage data!
 
+Note the coverage percentage calculated by Coveralls sometimes disagrees with
+that calculated by `gocov report`.  Afaik this has to do with how they count
+"meaningful" lines of code.
+
 {% img /images/go_ci/coveralls-first-build.png First build %}
 
 Click on the build number - in this case, "#1" - to explore coverage in the
@@ -637,3 +641,4 @@ The coverage badge is now visible on Github!
 
 Uh-oh, that badge is red.  Not-so-shiny.  :(  We better get to work improving
 our test coverage!
+
