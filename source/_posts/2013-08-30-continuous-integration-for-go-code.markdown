@@ -408,3 +408,54 @@ REPO TOKEN in the TECHNICAL DETAILS section.  Copy the token to your clipboard.
 
 
 ## Add `goveralls` to Drone config
+
+Now we need to push some test coverage data to Coveralls.  We will do this by
+adding `goveralls`, a Coveralls client for Go code, to our Drone build script.
+We must use Drone because `goveralls` calls `gocov`, which is not supported on
+Travis CI.
+
+Return to the Drone settings for `foofinder`, and update the Commands section
+to call `goveralls`:
+
+``` text
+go get
+go build
+go get github.com/bmizerany/assert
+go test -v
+
+go get -v github.com/axw/gocov/gocov
+go get -v github.com/mattn/goveralls
+goveralls -v -service drone.io $COVERALLS_TOKEN
+```
+
+Then paste your Coveralls Repo Token into the Environment Variables section
+like this:
+
+``` text
+COVERALLS_TOKEN=paste_your_token_here
+```
+
+Note, the Environment Variables of a Drone project are not visible to the
+public, but the Commands are.
+
+{% img images/drone-coveralls-settings.png Configure Drone to work with Coveralls %}
+
+Click "Save", then click "Build Now" to kick off a new build.  If everything
+is set up correctly, the build will display a Coveralls job link when it
+completes.
+
+{% img images/drone-coveralls-success.png Successful push to Coveralls %}
+
+Refresh your project's Coveralls page, and you will see code coverage data!
+
+{% img images/coveralls-first-build.png First build %}
+
+Click on the build number - in this case, "#1" - to explore coverage in the
+build.
+
+{% img images/coveralls-build-details.png Build Details %}
+
+By clicking on an individual file name, you can view color coded code coverage
+for that file.
+
+{% img images/coveralls-file-details.png Source File Details %}
