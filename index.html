@@ -246,12 +246,11 @@ it <code>foofinder</code>.  Now clone the repo to your local machine:</p>
 <p>We can use <a href="http://github.com/axw/gocov"><code>gocov</code></a> to ananlyze how much of our
 codebase is covered by tests.</p>
 
-<p>Install <code>gocov</code>:</p>
+<p>Install <code>gocov</code>.  Note that <code>gocov</code> has both a library and a CLI, thus the
+<code>gocov/gocov</code> path:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="text"><span class="line">$ go get -v github.com/axw/gocov/gocov
-</span><span class="line">github.com/axw/gocov/gocov
+</pre></td><td class="code"><pre><code class="text"><span class="line">go get -v github.com/axw/gocov/gocov
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><code>gocov</code> has several commands.   <code>gocov test</code> produces JSON output:</p>
