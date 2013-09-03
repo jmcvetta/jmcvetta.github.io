@@ -94,11 +94,11 @@ ok  	github.com/jmcvetta/foofinder	0.009s
 We can use [`gocov`](http://github.com/axw/gocov) to ananlyze how much of our
 codebase is covered by tests.
 
-Install `gocov`:
+Install `gocov`.  Note that `gocov` has both a library and a CLI, thus the
+`gocov/gocov` path:
 
 ``` text
-$ go get -v github.com/axw/gocov/gocov
-github.com/axw/gocov/gocov
+go get -v github.com/axw/gocov/gocov
 ```
 
 `gocov` has several commands.   `gocov test` produces JSON output:
