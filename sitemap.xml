@@ -2,22 +2,22 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/</loc>
-        <lastmod>2013-09-02T22:35:42-07:00</lastmod>
+        <lastmod>2013-10-03T12:36:43-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmcvetta.github.io/blog/archives/</loc>
-        <lastmod>2013-09-02T22:35:42-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jmcvetta.github.io/robots.txt</loc>
-        <lastmod>2013-08-30T20:26:52-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jmcvetta.github.io/</loc>
-        <lastmod>2013-09-02T22:35:42-07:00</lastmod>
+        <lastmod>2013-10-03T12:36:43-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmcvetta.github.io/about/</loc>
-        <lastmod>2013-08-30T20:26:52-07:00</lastmod>
+        <lastmod>2013-10-03T12:36:43-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmcvetta.github.io/robots.txt</loc>
+        <lastmod>2013-10-03T12:36:43-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmcvetta.github.io/</loc>
+        <lastmod>2013-10-03T12:36:43-07:00</lastmod>
     </url>
 </urlset>
